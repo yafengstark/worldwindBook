@@ -49,6 +49,8 @@ import java.util.List;
  * value from GridPointAttributes are ignored. In this altitude mode only the Sector, dimensions, and color from
  * GridPointAttributes are used.
  *
+ * 是一个可渲染对象
+ *
  * @author dcollins
  * @version $Id: AnalyticSurface.java 3020 2015-04-14 21:23:03Z dcollins $
  */
@@ -531,6 +533,7 @@ public class AnalyticSurface implements Renderable, PreRenderable
      *
      * @param dc the <code>DrawContext</code> to be used
      */
+    @Override
     public void render(DrawContext dc)
     {
         if (dc == null)

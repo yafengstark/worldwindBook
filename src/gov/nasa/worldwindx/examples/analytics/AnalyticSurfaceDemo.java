@@ -138,6 +138,15 @@ public class AnalyticSurfaceDemo extends ApplicationTemplate
         outLayer.addRenderable(createLegendRenderable(surface, 300, legend));
     }
 
+    /**
+     * 对应平面的那个
+     *
+     * @param minHue
+     * @param maxHue
+     * @param width
+     * @param height
+     * @param outLayer
+     */
     protected static void createRandomColorSurface(double minHue, double maxHue, int width, int height,
         RenderableLayer outLayer)
     {

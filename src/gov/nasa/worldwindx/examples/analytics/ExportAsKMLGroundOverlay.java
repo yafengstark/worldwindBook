@@ -19,6 +19,10 @@ import javax.xml.stream.XMLStreamException;
 import java.io.*;
 
 /**
+ *
+ * 导出dem（tif格式）到图片中，
+ * 生成kml
+ *
  * @author tag
  * @version $Id: ExportAsKMLGroundOverlay.java 1352 2013-05-20 18:41:16Z tgaskins $
  */
