@@ -19,6 +19,10 @@ import java.io.File;
  * Illustrates how to import elevation data into WorldWind. This imports a GeoTIFF file containing elevation data and
  * creates an <code>{@link gov.nasa.worldwind.globes.ElevationModel}</code> for it.
  *
+ * 本地tif图直接作为地形导入
+ *
+ * LocalElevationModel使用样例
+ *
  * @author tag
  * @version $Id: ImportElevations.java 1171 2013-02-11 21:45:02Z dcollins $
  */
@@ -57,6 +61,7 @@ public class ImportElevations extends ApplicationTemplate
                 File sourceFile = ExampleUtil.saveResourceToTempFile(ELEVATIONS_PATH, ".tif");
 
                 // Create a local elevation model from the data.
+                // LocalElevationModel使用样例
                 final LocalElevationModel elevationModel = new LocalElevationModel();
                 elevationModel.addElevations(sourceFile);
 
