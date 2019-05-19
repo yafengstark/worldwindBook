@@ -56,7 +56,7 @@ public class ExtrudedPolygonWithBaseDepth extends ApplicationTemplate
             pathPositions.add(Position.fromDegrees(43.84344, -114.63673, 20));
             ExtrudedPolygon pgon = new ExtrudedPolygon(pathPositions);
 
-            pgon.setAltitudeMode(WorldWind.RELATIVE_TO_GROUND);
+            pgon.setAltitudeMode(WorldWind.RELATIVE_TO_GROUND);//
             pgon.setSideAttributes(sideAttributes);
             pgon.setCapAttributes(capAttributes);
             pgon.setBaseDepth(20); // Set the base depth to the extruded polygon's height.

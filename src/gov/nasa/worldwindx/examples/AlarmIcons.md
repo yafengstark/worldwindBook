@@ -13,3 +13,6 @@ PulsingAlarmAction： 逐渐缩放
 FlashingAlarmAction： 快速闪烁
 
 通过改变图形的放缩实现。
+
+Timer周期执行
+

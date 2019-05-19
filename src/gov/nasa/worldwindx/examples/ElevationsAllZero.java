@@ -14,6 +14,8 @@ import javax.swing.*;
 /**
  * Shows how to use {@link ZeroElevationModel} to eliminate all elevations on the globe.
  *
+ * 地形被指定为0
+ *
  * @author tag
  * @version $Id: ElevationsAllZero.java 699 2012-07-13 17:53:47Z tgaskins $
  */

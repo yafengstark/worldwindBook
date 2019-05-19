@@ -101,6 +101,12 @@ public class ApplicationTemplate
             this.initialize(includeStatusBar, includeLayerPanel, includeStatsPanel);
         }
 
+        /**
+         *
+         * @param includeStatusBar
+         * @param includeLayerPanel
+         * @param includeStatsPanel
+         */
         protected void initialize(boolean includeStatusBar, boolean includeLayerPanel, boolean includeStatsPanel)
         {
             // Create the WorldWindow.

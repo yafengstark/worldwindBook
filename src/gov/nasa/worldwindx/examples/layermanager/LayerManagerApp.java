@@ -18,6 +18,8 @@ import java.awt.*;
  * Shows how to instantiate the new layer manager. This class merely instantiates and positions it. The layer manager,
  * itself, handles all the logic of identifying which layers are visible and enabling changes to their Z order.
  *
+ * 图层管理
+ *
  * @author tag
  * @version $Id: LayerManagerApp.java 1179 2013-02-15 17:47:37Z tgaskins $
  */

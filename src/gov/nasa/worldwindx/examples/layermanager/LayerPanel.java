@@ -120,13 +120,15 @@ public class LayerPanel extends JPanel
         }
 
         // Remove the layer from the layer list and then re-insert it.
-
+        // 移除图层，重新插入
         layerList.remove(layer);
 
-        if (direction > 0)
+        if (direction > 0) {
             layerList.add(index + 1, layer);
-        else if (direction < 0)
+        }
+        else if (direction < 0) {
             layerList.add(index - 1, layer);
+        }
 
         // Update WorldWind so the change is visible.
         wwd.redraw();

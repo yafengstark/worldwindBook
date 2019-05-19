@@ -11,6 +11,8 @@ import java.awt.*;
  * Example of integrating a gazetteer search function using the {@link gov.nasa.worldwind.poi.YahooGazetteer}.
  * The example includes a search dialog box, into which the user can enter a search term or a coordinate pair. When the
  * search is executed, the globe will animate to top search result.
+ * 、
+ * Gazetteer: 地名索引
  *
  * @author jparsons
  * @version $Id: GazetteerApp.java 1171 2013-02-11 21:45:02Z dcollins $

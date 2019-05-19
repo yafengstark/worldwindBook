@@ -18,11 +18,13 @@ import java.util.*;
  */
 public class ShapeUtils
 {
+    // 根据视场获取高度
     public static double getViewportScaleFactor(WorldWindow wwd)
     {
         return ((OrbitView) wwd.getView()).getZoom() / 8.0;
     }
 
+    // 获取视角中心位置
     public static Position getNewShapePosition(WorldWindow wwd)
     {
         Line ray = new Line(wwd.getView().getEyePoint(), wwd.getView().getForwardVector());
@@ -34,6 +36,7 @@ public class ShapeUtils
         }
         else if (wwd.getView() instanceof OrbitView)
         {
+            // CenterPosition
             return ((OrbitView) wwd.getView()).getCenterPosition();
         }
 

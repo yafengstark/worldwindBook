@@ -16,6 +16,8 @@ import java.awt.*;
  *
  * @version $Id: LayerPanel.java 2115 2014-07-01 17:58:16Z tgaskins $
  *
+ * 图层panel
+ *
  * @see LayerTreeUsage
  * @see OnScreenLayerManager
  */

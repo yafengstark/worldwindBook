@@ -13,6 +13,9 @@ import java.io.IOException;
 
 /**
  * Shows how to apply EGM96 offsets to the Earth.
+ *
+ *
+ *
  * @author tag
  * @version $Id: EGM96Offsets.java 1501 2013-07-11 15:59:11Z tgaskins $
  */

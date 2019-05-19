@@ -24,6 +24,7 @@ import java.awt.*;
  * https://goworldwind.org/developers-guide/how-to-build-a-custom-renderable/ for a complete description of this
  * example.
  *
+ *
  * @author pabercrombie
  * @version $Id: Cube.java 691 2012-07-12 19:17:17Z pabercrombie $
  */

@@ -41,6 +41,7 @@ public class DeepPicking extends Airspaces
                 {
                     if (event.getEventAction().equals(SelectEvent.HOVER) && event.getObjects() != null)
                     {
+                        //
                         System.out.printf("%d objects\n", event.getObjects().size());
                         if (event.getObjects().size() > 1)
                         {

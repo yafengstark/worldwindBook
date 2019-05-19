@@ -29,6 +29,9 @@ import java.util.List;
  * hues. Contour lines are created at the boundaries between adjacent colors using ContourBuilder, and are displayed on
  * the globe as Path shapes.
  *
+ *
+ * Contour：外形轮廓
+ *
  * @author dcollins
  * @version $Id: ContourBuilderExample.java 2429 2014-11-14 17:52:34Z dcollins $
  */
