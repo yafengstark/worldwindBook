@@ -19,6 +19,8 @@ import java.awt.*;
 /**
  * Shows how to detect picked icons. Place the cursor over the icons to see the response printed to the console.
  *
+ * 鼠标悬停在图标上，会触发事件
+ *
  * @author Patrick Murris
  * @version $Id: IconPicking.java 2219 2014-08-11 21:39:44Z dcollins $
  * @see gov.nasa.worldwind.globes.FlatGlobe
