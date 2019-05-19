@@ -24,6 +24,8 @@ import java.awt.*;
  * This class holds a WorldWindow that displays the view volume and currently visible terrain of another WorldWindow.
  *
  * 右侧的那个，
+ * ViewVolumeRenderer的使用
+ *
  * @author tag
  * @version $Id: ViewVolumeViewer.java 1171 2013-02-11 21:45:02Z dcollins $
  */
