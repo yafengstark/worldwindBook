@@ -16,6 +16,8 @@ import javax.media.opengl.GLAnimatorControl;
 /**
  * Shows how to use a JOGL Animator to animate in WorldWind
  *
+ * 旋转地球
+ *
  * @author tag
  * @version $Id: AnimatedGlobe.java 1893 2014-04-04 04:31:59Z tgaskins $
  */
@@ -43,6 +45,7 @@ public class AnimatedGlobe extends ApplicationTemplate
             animator.start();
         }
 
+        // 渲染监听
         @Override
         public void stageChanged(RenderingEvent event)
         {
@@ -62,7 +65,7 @@ public class AnimatedGlobe extends ApplicationTemplate
                 double alt = eyePosition.getAltitude();
 
                 eyePosition = Position.fromDegrees(lat, lon, alt);
-                getWwd().getView().stopAnimations();
+                getWwd().getView().stopAnimations(); // 注释掉没什么变化啊？
                 getWwd().getView().setEyePosition(eyePosition);
             }
         }
