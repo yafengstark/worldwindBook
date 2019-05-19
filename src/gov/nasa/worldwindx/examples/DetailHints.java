@@ -21,6 +21,11 @@ import java.util.Hashtable;
  * using their detail hint properties. Dragging the "Scene Detail" slider specifies the detail hint of the current
  * elevation model and tiled image layers.
  *
+ *
+ * 展示如何控制地形和影像的细节层次。
+ *
+ * 很有用
+ *
  * @author Patrick Murris
  * @version $Id: DetailHints.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
