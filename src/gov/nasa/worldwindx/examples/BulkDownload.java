@@ -16,6 +16,8 @@ import java.awt.*;
  * to retrieve, then retrieves data for the specified area using the <code>{@link gov.nasa.worldwind.retrieve.BulkRetrievable}</code>
  * interface on layers and elevation models that support it.
  *
+ * 影像数据下载
+ *
  * @author Patrick Murris
  * @version $Id: BulkDownload.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
