@@ -33,6 +33,9 @@ import java.util.*;
  * The key functionality demonstrated by KeepingObjectsVisible is found in the internal classes {@link
  * KeepingObjectsInView.ViewController} and {@link gov.nasa.worldwindx.examples.KeepingObjectsInView.ViewAnimator}.
  *
+ * 保持目标在视野里大小相同，
+ * 随着视点距离变化大小
+ *
  * @author dcollins
  * @version $Id: KeepingObjectsInView.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
