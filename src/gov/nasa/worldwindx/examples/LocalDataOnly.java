@@ -11,6 +11,9 @@ import gov.nasa.worldwind.WorldWind;
 /**
  * Operates completely locally, drawing data only from local caches.
  *
+ *
+ * 离线模式
+ *
  * @author tag
  * @version $Id: LocalDataOnly.java 1171 2013-02-11 21:45:02Z dcollins $
  */
