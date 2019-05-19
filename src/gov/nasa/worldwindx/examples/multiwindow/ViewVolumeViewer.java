@@ -23,6 +23,7 @@ import java.awt.*;
 /**
  * This class holds a WorldWindow that displays the view volume and currently visible terrain of another WorldWindow.
  *
+ * 右侧的那个，
  * @author tag
  * @version $Id: ViewVolumeViewer.java 1171 2013-02-11 21:45:02Z dcollins $
  */
@@ -63,7 +64,7 @@ public class ViewVolumeViewer extends JFrame
                 {
                     // Get the observed window's sector geometry and update this window's terrain display layer
                     SectorGeometryList sgCopy = new SectorGeometryList(observed.getSceneController().getTerrain());
-                    sgLayer.setGeometry(sgCopy);
+                    sgLayer.setGeometry(sgCopy); // 几何体
 
                     // Get the observed window's view and update this window's view volume display layer
                     vvLayer.setView(observed.getView());
@@ -127,6 +128,10 @@ public class ViewVolumeViewer extends JFrame
     }
 
     // A layer to display the terrain of the observed WorldWindow
+
+    /**
+     * 区域
+     */
     protected static class SectorGeometryLayer extends RenderableLayer
     {
         protected SectorGeometryList sg;

@@ -37,6 +37,7 @@ import java.awt.*;
  */
 public class MultiFrame
 {
+
     // A panel to hold a WorldWindow and status bar.
     private static class WWPanel extends JPanel
     {
