@@ -153,6 +153,9 @@ public class AnnotationControls extends ApplicationTemplate
         }
     }
 
+    /**
+     *
+     */
     public static class ContentAnnotation implements ActionListener
     {
         protected AppFrame appFrame;
