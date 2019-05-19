@@ -23,6 +23,9 @@ import java.io.File;
  * Illustrates how to import imagery into WorldWind. This imports a GeoTIFF image file and displays it as a
  * <code>{@link SurfaceImage}</code>.
  *
+ * SurfaceImage使用
+ * 使用本地影像（tif）格式，转为SurfaceImage添加到地球上
+ *
  * @author tag
  * @version $Id: ImportImagery.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
