@@ -14,6 +14,8 @@ import java.io.*;
 import java.util.*;
 
 /**
+ * 输出区域内的高程数据
+ *
  * @author tag
  * @version $Id: HighResolutionTerrainTest.java 1952 2014-04-20 19:04:18Z tgaskins $
  */
@@ -90,6 +92,8 @@ public class HighResolutionTerrainTest
     {
         int numMatches = 0;
 
+
+        // 25个
         for (int i = 0; i < referencePositions.size(); i++)
         {
             if (!testPositions.get(i).equals(referencePositions.get(i)))
@@ -106,8 +110,13 @@ public class HighResolutionTerrainTest
     {
         HighResolutionTerrain hrt = new HighResolutionTerrain(new Earth(), sector, null, 1.0);
 
+        // 生成25个
         ArrayList<Position> referenceLocations = generateReferenceLocations(hrt.getSector(), 5, 5);
         ArrayList<Position> referencePositions = computeElevations(referenceLocations);
+
+        System.out.println("---" + referenceLocations.size());
+
+
         writeReferencePositions(filePath, referencePositions);
     }
 
