@@ -14,6 +14,8 @@ import gov.nasa.worldwind.Configuration;
  * non-default location for the writable WorldWind cache. That file also includes the standard read locations of the
  * cache so that any previously cached data will be found and used.
  *
+ * 缓存设置
+ *
  * @author tag
  * @version $Id: CacheLocationConfiguration.java 2851 2015-02-26 01:09:46Z tgaskins $
  */
