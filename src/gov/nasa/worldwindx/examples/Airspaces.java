@@ -33,6 +33,11 @@ import java.util.Arrays;
  * by a list of geographic locations.</li> <li><code>{@link Box}</code> - a rectangle defined by a pair of geographic
  * locations.</li> </ul>
  *
+ * 展示如何配置和显示WorldWind 空域图形。空域图形是挤压的3D图形。
+ * 总是符合地球的曲率，可选依赖地形。
+ *
+ *
+ * Airspaces：空域
  * @author dcollins
  * @version $Id: Airspaces.java 3423 2015-09-23 20:59:03Z tgaskins $
  */
@@ -68,17 +73,17 @@ public class Airspaces extends ApplicationTemplate
             cyl.setValue(AVKey.DISPLAY_NAME, "30km radius Cylinder with top and bottom terrain conformance");
             layer.addRenderable(cyl);
 
-            // Radarc
+            // Radarc 雷达弧
             // To render a Radarc,
             // (1) Specify inner radius and outer radius.
             // (2) Specify start and stop azimuth.
             PartialCappedCylinder partCyl = new PartialCappedCylinder(attrs);
             partCyl.setCenter(LatLon.fromDegrees(46.7477, -122.6372));
-            partCyl.setRadii(15000.0, 30000.0);
+            partCyl.setRadii(15000.0, 30000.0); // 内外半径
             partCyl.setAltitudes(5000.0, 10000.0);
             partCyl.setAzimuths(Angle.fromDegrees(90.0), Angle.fromDegrees(0.0));
             partCyl.setTerrainConforming(true, true);
-            partCyl.setValue(AVKey.DISPLAY_NAME, "Partial Cylinder from 90 to 0 degrees");
+            partCyl.setValue(AVKey.DISPLAY_NAME, "Partial Cylinder from 90 to 0 degrees 雷达弧");
             layer.addRenderable(partCyl);
 
             Cake cake = new Cake(attrs);
@@ -116,6 +121,7 @@ public class Airspaces extends ApplicationTemplate
             layer.addRenderable(orbit);
 
             // Curtain around Snohomish County, WA
+            // Curtain：窗帘
             Curtain curtain = new Curtain(attrs);
             curtain.setLocations(makeLatLon(SNOHOMISH_COUNTY));
             curtain.setAltitudes(5000.0, 10000.0);
