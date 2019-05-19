@@ -43,8 +43,9 @@ public class ContextMenusOnShapes extends ApplicationTemplate
             {
                 if (event.getEventAction().equals(SelectEvent.ROLLOVER))
                     highlight(event, event.getTopObject());
-                else if (event.getEventAction().equals(SelectEvent.RIGHT_PRESS)) // Could do RIGHT_CLICK instead
+                else if (event.getEventAction().equals(SelectEvent.RIGHT_PRESS)) { // Could do RIGHT_CLICK instead
                     showContextMenu(event);
+                }
             }
             catch (Exception e)
             {
@@ -91,6 +92,7 @@ public class ContextMenusOnShapes extends ApplicationTemplate
                 if (!(event.getSource() instanceof Component))
                     return;
 
+                // ContextMenu
                 ContextMenu menu = new ContextMenu((Component) event.getSource(), menuInfo);
                 menu.show(event.getMouseEvent());
             }
