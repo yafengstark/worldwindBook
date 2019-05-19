@@ -277,6 +277,8 @@ public class ExtrudedPolygonBuilder extends ApplicationTemplate
             double heightInMeters = fitShapeToViewport ?
                 ShapeUtils.getViewportScaleFactor(wwd) : DEFAULT_SHAPE_SIZE_METERS;
 
+            //
+
             java.util.List<Position> locations = ShapeUtils.createPositionSquareInViewport(wwd, position, heading,
                 heightInMeters);
 
@@ -558,6 +560,7 @@ public class ExtrudedPolygonBuilder extends ApplicationTemplate
             this.firePropertyChange(SIZE_NEW_SHAPES_TO_VIEWPORT, null, resize);
         }
 
+        @Override
         public void actionPerformed(ActionEvent e)
         {
             if (!this.isEnabled())
@@ -568,6 +571,7 @@ public class ExtrudedPolygonBuilder extends ApplicationTemplate
             //noinspection StringEquality
             if (e.getActionCommand() == NEW_POLYGON)
             {
+                // 新建
                 this.createNewEntry(new ExtrudedPolygonFactory());
             }
             else //noinspection StringEquality
