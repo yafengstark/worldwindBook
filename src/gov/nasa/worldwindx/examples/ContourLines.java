@@ -73,6 +73,10 @@ public class ContourLines extends ApplicationTemplate
             this.getControlPanel().add(this.makeContourLineControlPanel(), BorderLayout.SOUTH);
         }
 
+        /**
+         * 滑动条控制等高线
+         * @return
+         */
         protected JPanel makeContourLineControlPanel()
         {
             JPanel controlPanel = new JPanel();
@@ -90,7 +94,7 @@ public class ContourLines extends ApplicationTemplate
                 public void stateChanged(ChangeEvent event)
                 {
                     contourLine.setElevation(slider.getValue());
-                    getWwd().redraw();
+                    getWwd().redraw(); //
                 }
             });
             controlPanel.add(slider);
