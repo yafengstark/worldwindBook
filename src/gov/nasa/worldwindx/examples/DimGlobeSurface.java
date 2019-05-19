@@ -24,6 +24,8 @@ import java.awt.image.*;
  * Note that this does not provide a filtering effect -- enhancing or blocking specific colors. For that
  * <code>SurfaceImage</code> would need blending controls, but it doesn't have them.
  *
+ * 图层透明度
+ *
  * @author tag
  * @version $Id: DimGlobeSurface.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
@@ -68,7 +70,7 @@ public class DimGlobeSurface extends ApplicationTemplate
 
             Graphics2D g = (Graphics2D) image.getGraphics();
 
-            g.setColor(new Color(0f, 0f, 0f, 1f)); // black, but any color could be used
+            g.setColor(new Color(0f, 0f, 0.3f, 1f)); // black, but any color could be used
             g.fillRect(0, 0, image.getWidth(), image.getHeight());
 
             g.dispose();
@@ -85,7 +87,7 @@ public class DimGlobeSurface extends ApplicationTemplate
                 public void stateChanged(ChangeEvent event)
                 {
                     double value = opacitySlider.getValue();
-                    surfaceImage.setOpacity(value / 100);
+                    surfaceImage.setOpacity(value / 100); // 图层颜色
                     getWwd().redraw();
                 }
             });
