@@ -41,6 +41,10 @@ import java.io.InputStream;
  * GlobeBrowserBalloon}</code> - a Globe-attached balloon with support for HTML, JavaScript, and Flash content.</li>
  * </ul>
  *
+ * 支持html
+ * 点击弹出
+ *
+ *
  * @author pabercrombie
  * @version $Id: Balloons.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
