@@ -33,6 +33,8 @@ import java.net.URL;
  * features on the globe will open an info balloon for the feature, if the feature provides a description. Use the File
  * menu to open a document from a local file or from a URL.
  *
+ * 可以支持三维模型
+ *
  * @author tag
  * @version $Id: KMLViewer.java 1171 2013-02-11 21:45:02Z dcollins $
  */
