@@ -12,6 +12,9 @@ import gov.nasa.worldwind.terrain.BathymetryFilterElevationModel;
  * Illustrates how to suppress the WorldWind <code>{@link gov.nasa.worldwind.globes.Globe}'s</code> bathymetry
  * (elevations below mean sea level) by using a <code>{@link BathymetryFilterElevationModel}</code>.
  *
+ * 去除水深数据
+ *
+ *
  * @author tag
  * @version $Id: BathymetryRemoval.java 1171 2013-02-11 21:45:02Z dcollins $
  */
@@ -26,6 +29,8 @@ public class BathymetryRemoval extends ApplicationTemplate
 
             // Wrap it with the no-bathymetry elevation model.
             BathymetryFilterElevationModel noDepthModel = new BathymetryFilterElevationModel(currentElevationModel);
+
+
 
             // Have the globe use the no-bathymetry elevation model.
             this.getWwd().getModel().getGlobe().setElevationModel(noDepthModel);
