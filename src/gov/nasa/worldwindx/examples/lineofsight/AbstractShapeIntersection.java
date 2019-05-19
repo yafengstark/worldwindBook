@@ -24,6 +24,9 @@ import java.util.List;
  * intersection of the shape and a line through the shape parallel to the globe, and a line through the shape
  * perpendicular to the globe.
  *
+ *
+ * Intersection： 交叉
+ *
  * @author ccrick
  * @version $Id: AbstractShapeIntersection.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
@@ -31,8 +34,9 @@ public class AbstractShapeIntersection extends ApplicationTemplate
 {
     public static class AppFrame extends ApplicationTemplate.AppFrame
     {
+
         protected HighResolutionTerrain terrain; // Use this class to test against high-resolution terrain
-        protected Cylinder shape; // the polygon to intersect
+        protected Cylinder shape; // the polygon to intersect 圆柱体
         protected RenderableLayer resultsLayer; // holds the intersection geometry
         protected RenderableLayer shapeLayer; // holds the shape
 
@@ -40,11 +44,12 @@ public class AbstractShapeIntersection extends ApplicationTemplate
         {
             super(true, true, false);
 
-            this.shape = new Cylinder(Position.fromDegrees(40.5, -120.5, 4e3), 5000, 5000, 5000);
+            this.shape = new Cylinder(Position.fromDegrees(40.5, -120.5, 4e3),
+                    2000, 3000, 5000);
             this.shape.setAltitudeMode(WorldWind.ABSOLUTE);
 
             // Set some of the shape's attributes
-            ShapeAttributes attrs = new BasicShapeAttributes();
+            ShapeAttributes attrs = new BasicShapeAttributes(); // 图形属性
             attrs.setInteriorMaterial(Material.LIGHT_GRAY);
             attrs.setInteriorOpacity(0.6);
 
@@ -64,6 +69,8 @@ public class AbstractShapeIntersection extends ApplicationTemplate
 
             // Perform the intersection test within a timer callback. Intersection calculations would normally be done
             // on a separate, non-EDT thread, however.
+            // 为什么要这样做？
+            // 绘制相交点
             javax.swing.Timer timer = new javax.swing.Timer(5000, new ActionListener()
             {
                 public void actionPerformed(ActionEvent actionEvent)
@@ -75,6 +82,7 @@ public class AbstractShapeIntersection extends ApplicationTemplate
                     performIntersection(pA, pB);
 
                     // Intersect the top.
+                    // 垂直线
                     pA = Position.fromDegrees(40.5, -120.5, 0);
                     pB = new Position(pA, 20e3);
                     drawLine(pA, pB);
@@ -96,6 +104,7 @@ public class AbstractShapeIntersection extends ApplicationTemplate
                 Line line = new Line(targetPoint, refPoint.subtract3(targetPoint));
 
                 // Perform the intersection.
+                // 计算相交点
                 List<Intersection> intersections = this.shape.intersect(line, this.terrain);
 
                 // Get and display the intersections.
@@ -113,6 +122,11 @@ public class AbstractShapeIntersection extends ApplicationTemplate
             }
         }
 
+        /**
+         * 使用path绘制
+         * @param pA
+         * @param pB
+         */
         protected void drawLine(Position pA, Position pB)
         {
             // Create and display the intersection line.
@@ -129,6 +143,7 @@ public class AbstractShapeIntersection extends ApplicationTemplate
             this.getWwd().redraw();
         }
 
+        // 绘制相交点
         protected void drawIntersection(Intersection intersection)
         {
             // Display a point at the intersection.

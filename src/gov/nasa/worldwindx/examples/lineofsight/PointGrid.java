@@ -22,6 +22,9 @@ import java.util.*;
 import java.util.List;
 
 /**
+ *
+ * 顺序渲染
+ *
  * @author tag
  * @version $Id: PointGrid.java 1171 2013-02-11 21:45:02Z dcollins $
  */
@@ -340,6 +343,7 @@ public class PointGrid extends WWObjectImpl implements OrderedRenderable, Highli
     }
 
     /** {@inheritDoc} */
+    @Override
     public double getDistanceFromEye()
     {
         return this.eyeDistance;
@@ -403,6 +407,7 @@ public class PointGrid extends WWObjectImpl implements OrderedRenderable, Highli
     }
 
     /** {@inheritDoc} */
+    @Override
     public void render(DrawContext dc)
     {
         // This render method is called three times during frame generation. It's first called as a {@link Renderable}

@@ -20,6 +20,8 @@ import java.util.*;
  * Draws a grid of points on the terrain. The points are evenly spaced throughout a region defined by a four sided
  * polygon.
  *
+ * 大量数据的渲染
+ *
  * @author tag
  * @version $Id: GridOfPoints.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
@@ -51,6 +53,7 @@ public class GridOfPoints extends ApplicationTemplate
 
             // Populate the position list with positions and the positionInfo map with data.
             int aDataValue = 0;// generate an arbitrary data value
+            // 生成点集合迭代器
             PositionIterator posIter = new PositionIterator(corners, NUM_POINTS_WIDE, NUM_POINTS_HIGH);
             while (posIter.hasNext())
             {
@@ -58,6 +61,8 @@ public class GridOfPoints extends ApplicationTemplate
                 positions.add(position);
                 this.positionInfo.put(position, aDataValue++);
             }
+
+            System.out.println("大小："+ positionInfo.size());
 
             // Create the PointGrid shape.
             PointGrid grid = new PointGrid(corners, positions, NUM_POINTS_WIDE * NUM_POINTS_HIGH);
