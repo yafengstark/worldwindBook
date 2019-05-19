@@ -24,6 +24,9 @@ import java.util.ArrayList;
  * button while the cursor is on a placemark, the placemark's context menu is shown and the user may select an item in
  * it.
  *
+ * 标注的右键菜单
+ *
+ *
  * @author tag
  * @version $Id: ContextMenusOnShapes.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
