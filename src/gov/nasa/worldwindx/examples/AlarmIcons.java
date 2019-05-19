@@ -31,6 +31,7 @@ public class AlarmIcons extends ApplicationTemplate
 {
     public static class AppFrame extends ApplicationTemplate.AppFrame
     {
+        // 面向用户的图标
         private UserFacingIcon icon;
         private ArrayList<Action> alarmTypes = new ArrayList<Action>();
 
@@ -153,7 +154,7 @@ public class AlarmIcons extends ApplicationTemplate
                     {
                         public void actionPerformed(ActionEvent e)
                         {
-                            icon.setBackgroundScale(scales[++scaleIndex % scales.length]);
+                            icon.setBackgroundScale(scales[++scaleIndex % scales.length]);// 变换缩放
                             getWwd().redraw();
                         }
                     });
