@@ -17,6 +17,7 @@ import java.awt.event.*;
 /**
  * Displays the name and controls for one elevation model in the elevation model manager.
  *
+ * ElevationModel 的使用
  * @author tag
  * @version $Id: ElevationModelPanel.java 1179 2013-02-15 17:47:37Z tgaskins $
  */
@@ -158,15 +159,16 @@ public class ElevationModelPanel extends JPanel
             this.elevationModel.setEnabled(this.selected);
         }
 
+        @Override
         public void actionPerformed(ActionEvent actionEvent)
         {
             // Simply enable or disable the model based on its toggle button.
             if (((JCheckBox) actionEvent.getSource()).isSelected())
-                this.elevationModel.setEnabled(true);
+                this.elevationModel.setEnabled(true);//
             else
                 this.elevationModel.setEnabled(false);
 
-            wwd.redraw();
+            wwd.redraw(); // 重要,要重新绘制
         }
     }
 }
