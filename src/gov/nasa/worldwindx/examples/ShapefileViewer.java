@@ -24,6 +24,7 @@ import java.io.File;
  * parse a Shapefile's contents and convert the shapefile into an equivalent WorldWind shape. This provides examples of
  * importing a Shapefile on the local hard drive and importing a Shapefile at a remote URL.
  *
+ * 三维模型
  * @author Patrick Murris
  * @version $Id: ShapefileViewer.java 3212 2015-06-18 02:45:56Z tgaskins $
  */
