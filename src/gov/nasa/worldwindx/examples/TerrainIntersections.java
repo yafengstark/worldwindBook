@@ -38,6 +38,10 @@ import java.util.concurrent.*;
  * This example uses a {@link gov.nasa.worldwind.terrain.Terrain} object to perform the terrain retrieval, generation
  * and intersection calculations.s
  *
+ * intersections：交叉
+ *
+ * ？？？？
+ *
  * @author tag
  * @version $Id: TerrainIntersections.java 2109 2014-06-30 16:52:38Z tgaskins $
  */

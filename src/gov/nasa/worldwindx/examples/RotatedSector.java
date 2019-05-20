@@ -20,6 +20,9 @@ import java.awt.event.*;
  * <code>sector's</code> centroid and the computed width and height. The <code>SurfaceQuad's</code> heading is then set
  * to the desired rotation angle.
  *
+ *
+ * 旋转的长方体
+ *
  * @author tag
  * @version $Id: RotatedSector.java 2109 2014-06-30 16:52:38Z tgaskins $
  */

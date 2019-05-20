@@ -22,6 +22,9 @@ import java.util.Hashtable;
  * Example of {@link gov.nasa.worldwind.render.Wedge} usage. Shows examples of pyramids with various orientations,
  * materials, and textures applied.
  *
+ *
+ * Wedges： 棱，三角木
+ *
  * @author ccrick
  * @version $Id: Wedges.java 2109 2014-06-30 16:52:38Z tgaskins $
  */

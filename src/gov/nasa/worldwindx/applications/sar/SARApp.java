@@ -8,6 +8,10 @@ package gov.nasa.worldwindx.applications.sar;
 import gov.nasa.worldwind.Configuration;
 
 /**
+ * 搜救系统
+ * 飞行模拟
+ *
+ *
  * @author tag
  * @version $Id: SARApp.java 1171 2013-02-11 21:45:02Z dcollins $
  */

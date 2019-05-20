@@ -87,17 +87,20 @@ public class ShapeEditingExtension extends ApplicationTemplate
             return this.shaft.getAltitudeMode();
         }
 
+        @Override
         public void setAttributes(ShapeAttributes attributes)
         {
             this.shaft.setAttributes(attributes);
             this.head.setAttributes(attributes);
         }
 
+        @Override
         public ShapeAttributes getAttributes()
         {
             return this.shaft.getAttributes();
         }
 
+        @Override
         public void setHighlightAttributes(ShapeAttributes attributes)
         {
             this.shaft.setHighlightAttributes(attributes);

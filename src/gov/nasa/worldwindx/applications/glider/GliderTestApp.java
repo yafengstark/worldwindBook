@@ -21,6 +21,10 @@ import java.util.*;
 import java.util.List;
 
 /**
+ * glide：滑行
+ *
+ * ？？
+ *
  * @author tag
  * @version $Id: GliderTestApp.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
@@ -143,7 +147,7 @@ public class GliderTestApp extends ApplicationTemplate
             long start = System.currentTimeMillis();
             float[][] field = makeField(corners, testImage.getWidth(), testImage.getHeight(), Angle.fromDegrees(15));
             makeBorder(field, testImage.getWidth(), testImage.getHeight(), latLons);
-            projectedImage = GliderImage.alignImage(testImage, field[0], field[1]);
+            projectedImage = GliderImage.alignImage(testImage, field[0], field[1]);// 重投影？
             System.out.printf("Image projected, %d ms\n", System.currentTimeMillis() - start);
             imageName = WWIO.getFilename(cloudImagePath);
         }

@@ -19,6 +19,10 @@ import gov.nasa.worldwind.terrain.*;
  * The data is from Denmark.  Details for loading the imagery can be found in: config/Earth/ScankortDenmarkImageLayer.xml
  * while information for loading the elevation data is in: config/Earth/ScankortDenmarkDSMElevationModel.xml.
  *
+ * 丹麦数据
+ * 高分辨率影像，地形
+ *
+ *
  * @author dcollins
  * @version $Id: ScankortDenmark.java 2109 2014-06-30 16:52:38Z tgaskins $
  */

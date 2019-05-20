@@ -191,6 +191,9 @@ public class ViewIteration extends ApplicationTemplate
             }
         }
 
+        /**
+         * 跟随路径运动
+         */
         protected class FollowPath extends PathAction
         {
             ArrayList<Position> path = new ArrayList<Position>();

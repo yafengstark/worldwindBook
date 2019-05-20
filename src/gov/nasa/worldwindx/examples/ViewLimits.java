@@ -24,6 +24,8 @@ import java.io.File;
  * Example of how to keep the view within certain bounds. This example defines a geographic bounding box, and requires
  * the view center position to stay within this box. The view can also be constrained by heading, pitch, and zoom.
  *
+ * 把视角控制在一定范围内
+ *
  * @author dcollins
  * @version $Id: ViewLimits.java 2259 2014-08-22 23:03:59Z dcollins $
  */
@@ -171,6 +173,7 @@ public class ViewLimits extends ApplicationTemplate
             }
         }
 
+        @Override
         public void actionPerformed(ActionEvent actionEvent)
         {
             if (this.ignoreComponentEvents)

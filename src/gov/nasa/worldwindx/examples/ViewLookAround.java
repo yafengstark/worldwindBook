@@ -178,7 +178,7 @@ public class ViewLookAround extends ApplicationTemplate
 //                    System.out.println("Orient: " + view.getHeading() + ", " + view.getPitch() + ", " + view.getRoll() );
 
                     // Redraw
-                    this.wwd.redraw();
+                    this.wwd.redraw(); // 重要
                 }
             }
 

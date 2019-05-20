@@ -36,6 +36,9 @@ import java.util.ArrayList;
  * that can be arbitrarily positioned, scaled and warped on the globe's surface using control points at the image's four
  * corners.
  *
+ * ？？？
+ *
+ *
  * @author tag
  * @version $Id: RubberSheetImage.java 2109 2014-06-30 16:52:38Z tgaskins $
  */

@@ -17,6 +17,9 @@ import gov.nasa.worldwindx.examples.ApplicationTemplate;
 import java.io.InputStream;
 
 /**
+ * Antenna：天线
+ *
+ *
  * @author tag
  * @version $Id: AntennaViewer.java 2109 2014-06-30 16:52:38Z tgaskins $
  */

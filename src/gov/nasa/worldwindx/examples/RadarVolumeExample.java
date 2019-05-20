@@ -24,6 +24,8 @@ import java.util.List;
  * Shows how to compute a radar volume that considers terrain intersection and how to use the {@link
  * gov.nasa.worldwindx.examples.RadarVolume} shape to display the computed volume.
  *
+ * ？？？ 没看懂
+ *
  * @author tag
  * @version $Id: RadarVolumeExample.java 3233 2015-06-22 17:06:51Z tgaskins $
  */

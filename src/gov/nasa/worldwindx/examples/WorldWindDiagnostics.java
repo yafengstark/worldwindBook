@@ -15,6 +15,10 @@ import java.awt.event.*;
 import java.util.Map;
 
 /**
+ *
+ * Diagnostics：诊断
+ *
+ *
  * @author tag
  * @version $Id: WorldWindDiagnostics.java 2319 2014-09-17 19:22:58Z dcollins $
  */
