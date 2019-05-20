@@ -15,6 +15,7 @@ import gov.nasa.worldwind.render.SurfaceText;
 /**
  * Example of using the {@link SurfaceText} class. SurfaceText draws text on the surface of the globe.
  *
+ * SurfaceText 的使用
  * @author pabercrombie
  * @version $Id: SurfaceTextUsage.java 1171 2013-02-11 21:45:02Z dcollins $
  */
