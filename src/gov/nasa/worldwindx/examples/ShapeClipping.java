@@ -32,6 +32,8 @@ import java.awt.event.*;
  * specifies the location of the surface circle, whether to clip against land or water, and the desired resolution of
  * the resultant shape, in kilometers.
  *
+ * 根据矢量和图形切割，求补
+ *
  * @author dcollins
  * @version $Id: ShapeClipping.java 2411 2014-10-30 21:27:00Z dcollins $
  */
