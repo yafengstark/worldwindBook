@@ -29,6 +29,8 @@ import java.util.Arrays;
  * is to show how to do this when the image can't be re-used.) The <code>SurfaceImage</code> location could also be
  * continually changed, but this example doesn't do that.
  *
+ * 在地形上的动画
+ *
  * @author tag
  * @version $Id: VideoOnTerrain.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
