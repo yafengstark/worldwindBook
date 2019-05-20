@@ -16,6 +16,9 @@ import java.awt.event.*;
 /**
  * Shows how to shut down a {@link WorldWindow} and how to shut down all of WorldWind.
  *
+ * WorldWind.shutDown(); //
+ *
+ *
  * @author tag
  * @version $Id: Shutdown.java 1171 2013-02-11 21:45:02Z dcollins $
  */
@@ -114,7 +117,7 @@ public class Shutdown
 
             public void actionPerformed(ActionEvent e)
             {
-                WorldWind.shutDown();
+                WorldWind.shutDown(); //
                 destroyCurrentWindow();
                 createWindowAction.setEnabled(true);
             }
