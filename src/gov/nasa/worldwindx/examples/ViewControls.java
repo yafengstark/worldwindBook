@@ -18,6 +18,8 @@ import java.awt.event.*;
  * Shows the {@link gov.nasa.worldwind.layers.ViewControlsLayer} and allows you to adjust its size, orientation,
  * and available controls.
  *
+ * 视角控制
+ *
  * @author Patrick Murris
  * @version $Id: ViewControls.java 2109 2014-06-30 16:52:38Z tgaskins $
  * @see gov.nasa.worldwind.layers.ViewControlsLayer
