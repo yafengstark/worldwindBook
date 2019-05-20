@@ -23,6 +23,8 @@ import gov.nasa.worldwind.util.combine.ShapeCombiner;
  * using boolean operations. Three examples of such operations are given: union, intersection and difference. The result
  * of each operation is displayed in a separate layer beneath the original shapes.
  *
+ * 求两个图形的交、补、并
+ *
  * @author dcollins
  * @version $Id: ShapeCombining.java 2411 2014-10-30 21:27:00Z dcollins $
  */
