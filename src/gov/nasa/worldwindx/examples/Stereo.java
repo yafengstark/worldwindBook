@@ -11,7 +11,7 @@ import gov.nasa.worldwind.avlist.AVKey;
 /**
  * Shows how to turn on stereo, which is requested via a Java VM property. This example sets the property directly, but
  * it's more conventional to set it on the java command line.
- *
+ *Stereo: 立体的
  * @author tag
  * @version $Id: Stereo.java 1171 2013-02-11 21:45:02Z dcollins $
  */
@@ -22,7 +22,7 @@ public class Stereo extends ApplicationTemplate
         // Set the stereo.mode property to request stereo. Request red-blue anaglyph in this case. Can also request
         // "device" if the display device supports stereo directly. To prevent stereo, leave the property unset or set
         // it to an empty string.
-        System.setProperty("gov.nasa.worldwind.stereo.mode", "redblue");
+        System.setProperty("gov.nasa.worldwind.stereo.mode", "redblue");// ...
 
         // Configure the initial view parameters so that the balloons are immediately visible.
         Configuration.setValue(AVKey.INITIAL_LATITUDE, 46.7045);
