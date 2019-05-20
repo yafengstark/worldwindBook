@@ -23,6 +23,8 @@ import java.awt.event.*;
  * It proves particularly useful to explore the ocean floors where the bathymetry data reveals important geologic
  * features.
  *
+ * 地形分析器
+ *
  * @author tag
  * @version $Id: TerrainProfiler.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
