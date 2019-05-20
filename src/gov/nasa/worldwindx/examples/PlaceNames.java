@@ -13,6 +13,10 @@ import java.awt.*;
  * left side of the window lists all of the available place name categories. Click the check boxes to turn individual
  * categories on or off.
  *
+ *
+ * 地名
+ *
+ *
  * @author jparsons
  * @version $Id: PlaceNames.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
