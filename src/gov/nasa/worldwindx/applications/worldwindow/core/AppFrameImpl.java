@@ -73,17 +73,17 @@ public class AppFrameImpl extends AbstractFeature implements AppFrame
         {
             frame = new JFrame();
             frame.setTitle(controller.getAppTitle());
-//            frame.getContentPane().add(controller.getAppPanel().getJPanel(), BorderLayout.CENTER);
+            frame.getContentPane().add(controller.getAppPanel().getJPanel(), BorderLayout.CENTER);
 
             // ------------------------
-            JFXPanel fxPanel = new JFXPanel();
-            frame.add(fxPanel,BorderLayout.CENTER);
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    initFX(fxPanel);
-                }
-            });
+//            JFXPanel fxPanel = new JFXPanel();
+//            frame.add(fxPanel,BorderLayout.CENTER);
+//            Platform.runLater(new Runnable() {
+//                @Override
+//                public void run() {
+//                    initFX(fxPanel);
+//                }
+//            });
 
             //----------------------
             ToolBar toolBar = controller.getToolBar();
