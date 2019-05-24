@@ -17,6 +17,9 @@ import java.net.URL;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
+ * 状态栏，底部
+ *
+ *
  * @author tag
  * @version $Id: StatusBar.java 1945 2014-04-18 17:08:43Z tgaskins $
  */
