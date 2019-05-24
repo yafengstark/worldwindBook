@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="33.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.nasa.worldwind.util.statusbar.StatusBarContorller">
+   <children>
+      <Label layoutX="14.0" layoutY="12.0" text="视点高度" />
+      <Label layoutX="181.0" layoutY="9.0" text="纬度" />
+      <Label layoutX="311.0" layoutY="12.0" text="经度" />
+      <Label layoutX="420.0" layoutY="12.0" text="高程" />
+      <Text fx:id="altText" layoutX="81.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="latText" layoutX="229.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="lonText" layoutX="345.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="eleText" layoutX="458.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+   </children>
+</AnchorPane>
