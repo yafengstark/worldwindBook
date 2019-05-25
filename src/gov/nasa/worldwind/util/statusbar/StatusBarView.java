@@ -15,12 +15,15 @@ import javafx.scene.layout.Pane;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 
 /**
  * @author tony
  * @date 2019/5/24 20:57
  */
 public class StatusBarView  implements PositionListener, RenderingListener {
+
+    DecimalFormat df   = new DecimalFormat("######0.00");
 
     private Pane pane;
     private WorldWindow worldWindow;
@@ -61,17 +64,10 @@ public class StatusBarView  implements PositionListener, RenderingListener {
         Position newPos = event.getPosition();
         if (newPos != null)
         {
-//            String las = makeAngleDescription("Lat", newPos.getLatitude());
-//            String los = makeAngleDescription("Lon", newPos.getLongitude());
-//            String els = makeCursorElevationDescription(
-//                    eventSource.getModel().getGlobe().getElevation(newPos.getLatitude(), newPos.getLongitude()));
-//            latDisplay.setText(las);
-//            lonDisplay.setText(los);
-//            eleDisplay.setText(els);
-            statusBarContorller.latText.setText(newPos.getLatitude()+"");
-            statusBarContorller.lonText.setText(newPos.getLongitude()+"");
-            statusBarContorller.eleText.setText(worldWindow.getModel().getGlobe().getElevation(
-                    newPos.getLatitude(), newPos.getLongitude())+"");
+            statusBarContorller.latText.setText(df.format(newPos.getLatitude().degrees)+"");
+            statusBarContorller.lonText.setText(df.format(newPos.getLongitude().degrees)+"");
+            statusBarContorller.eleText.setText(df.format(worldWindow.getModel().getGlobe().getElevation(
+                    newPos.getLatitude(), newPos.getLongitude()))+"");
         }
         else
         {
@@ -92,8 +88,9 @@ public class StatusBarView  implements PositionListener, RenderingListener {
             public void run()
             {
                 if (worldWindow.getView() != null && worldWindow.getView().getEyePosition() != null) {
-                    statusBarContorller.altText.setText(
-                            worldWindow.getView().getEyePosition().getElevation() + "");
+
+                    statusBarContorller.altText.setText(df.format(
+                            worldWindow.getView().getEyePosition().getElevation()) + "");
                 }
 
             }
