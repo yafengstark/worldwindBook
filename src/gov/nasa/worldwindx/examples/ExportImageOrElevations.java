@@ -30,6 +30,8 @@ import java.util.*;
  * file. Click "Start selection", select a region on the globe, and then click "Save elevations..." to export elevation
  * data for the selected region to a GeoTIFF, or "Save image..." to export imagery.
  *
+ * 导出影像数据和高程数据。
+ *
  * @author Lado Garakanidze
  * @version $Id: ExportImageOrElevations.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
@@ -219,7 +221,10 @@ public class ExportImageOrElevations extends ApplicationTemplate
                 {
                     try
                     {
-                        int[] size = adjustSize(selectedSector, 512);
+
+                        //
+
+                        int[] size = adjustSize(selectedSector, 5120); // 调整这个desiredSize
                         int width = size[0], height = size[1];
 
                         double[] elevations = readElevations(selectedSector, width, height);
@@ -259,7 +264,7 @@ public class ExportImageOrElevations extends ApplicationTemplate
                 }
             });
 
-            this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+            this.setCursor(new Cursor(Cursor.WAIT_CURSOR)); // 设置鼠标状态
             this.getWwd().redraw();
             t.start();
         }
@@ -365,6 +370,12 @@ public class ExportImageOrElevations extends ApplicationTemplate
             t.start();
         }
 
+        /**
+         *
+         * @param sector
+         * @param desiredSize 最长的那个边的值，通过其和比例计算短边
+         * @return
+         */
         private int[] adjustSize(Sector sector, int desiredSize)
         {
             int[] size = new int[] {desiredSize, desiredSize};
@@ -372,8 +383,10 @@ public class ExportImageOrElevations extends ApplicationTemplate
             if (null != sector && desiredSize > 0)
             {
                 LatLon centroid = sector.getCentroid();
+                // 高方向上对应的大圆弧度
                 Angle dLat = LatLon.greatCircleDistance(new LatLon(sector.getMinLatitude(), sector.getMinLongitude()),
                     new LatLon(sector.getMaxLatitude(), sector.getMinLongitude()));
+                // 宽方向上对应的大圆弧度
                 Angle dLon = LatLon.greatCircleDistance(new LatLon(centroid.getLatitude(), sector.getMinLongitude()),
                     new LatLon(centroid.getLatitude(), sector.getMaxLongitude()));
 
@@ -412,13 +425,21 @@ public class ExportImageOrElevations extends ApplicationTemplate
             return layer.composeImageForSector(this.selectedSector, width, height, 1d, -1, mimeType, true, null, 30000);
         }
 
+        /**
+         * 影像宽高
+         *
+         * @param sector
+         * @param width 图像宽度
+         * @param height
+         * @return
+         */
         private double[] readElevations(Sector sector, int width, int height)
         {
             double[] elevations;
 
             double latMin = sector.getMinLatitude().radians;
             double latMax = sector.getMaxLatitude().radians;
-            double dLat = (latMax - latMin) / (double) (height - 1);
+            double dLat = (latMax - latMin) / (double) (height - 1); // delta
 
             double lonMin = sector.getMinLongitude().radians;
             double lonMax = sector.getMaxLongitude().radians;
@@ -451,6 +472,7 @@ public class ExportImageOrElevations extends ApplicationTemplate
                 Arrays.fill(elevations, MISSING_DATA_SIGNAL);
 
                 // retrieve elevations
+                // 核心功能
                 model.composeElevations(sector, latlons, width, elevations);
             }
             catch (Exception e)
@@ -483,6 +505,15 @@ public class ExportImageOrElevations extends ApplicationTemplate
             }
         }
 
+        /**
+         *
+         * @param sector
+         * @param width
+         * @param height
+         * @param elevations
+         * @param gtFile
+         * @throws IOException
+         */
         private void writeElevationsToFile(Sector sector, int width, int height, double[] elevations, File gtFile)
             throws IOException
         {
