@@ -9,6 +9,8 @@ import gov.nasa.worldwind.avlist.*;
 import gov.nasa.worldwind.geom.*;
 import gov.nasa.worldwind.layers.mercator.*;
 import gov.nasa.worldwind.util.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.*;
 
@@ -17,6 +19,7 @@ import java.net.*;
  */
 public class OSMMapnikLayer extends BasicMercatorTiledImageLayer
 {
+    private static Logger logger = LoggerFactory.getLogger(OSMMapnikLayer.class);
     public OSMMapnikLayer()
     {
         super(makeLevels());
@@ -29,7 +32,7 @@ public class OSMMapnikLayer extends BasicMercatorTiledImageLayer
         params.setValue(AVKey.TILE_WIDTH, 256);
         params.setValue(AVKey.TILE_HEIGHT, 256);
         params.setValue(AVKey.DATA_CACHE_NAME, "Earth/OSM-Mercator/OpenStreetMap Mapnik");
-        params.setValue(AVKey.SERVICE, "http://a.tile.openstreetmap.org/");
+        params.setValue(AVKey.SERVICE, "http://c.tile.openstreetmap.org/");
         params.setValue(AVKey.DATASET_NAME, "h");
         params.setValue(AVKey.FORMAT_SUFFIX, ".png");
         params.setValue(AVKey.NUM_LEVELS, 16);
@@ -47,9 +50,12 @@ public class OSMMapnikLayer extends BasicMercatorTiledImageLayer
         public URL getURL(Tile tile, String imageFormat)
             throws MalformedURLException
         {
-            return new URL(tile.getLevel().getService()
-                + (tile.getLevelNumber() + 3) + "/" + tile.getColumn() + "/"
-                + ((1 << (tile.getLevelNumber()) + 3) - 1 - tile.getRow()) + ".png");
+
+            URL url= new URL(tile.getLevel().getService()
+                    + (tile.getLevelNumber() + 3) + "/" + tile.getColumn() + "/"
+                    + ((1 << (tile.getLevelNumber()) + 3) - 1 - tile.getRow()) + ".png");
+            logger.debug(url.toString());
+            return url;
         }
     }
 
