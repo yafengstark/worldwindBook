@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.nasa.worldwindx.examples.elevations.boundary.BoundarySelectionsController">
+   <children>
+      <Label layoutX="102.0" layoutY="106.0" text="最小经度" />
+      <Label layoutX="102.0" layoutY="138.0" text="最大经度" />
+      <Label layoutX="102.0" layoutY="168.0" text="最小纬度" />
+      <Label layoutX="102.0" layoutY="200.0" text="最大纬度" />
+      <TextField fx:id="minLonTextField" layoutX="168.0" layoutY="102.0" />
+      <TextField fx:id="maxLonTextField" layoutX="168.0" layoutY="134.0" />
+      <TextField fx:id="minLatTextField" layoutX="168.0" layoutY="164.0" />
+      <TextField fx:id="maxLatTextField" layoutX="168.0" layoutY="196.0" />
+      <Button layoutX="106.0" layoutY="243.0" mnemonicParsing="false" onAction="#choose" text="画框选择" />
+      <Button layoutX="106.0" layoutY="294.0" mnemonicParsing="false" onAction="#output" text="输出高程" />
+      <Button layoutX="195.0" layoutY="243.0" mnemonicParsing="false" onAction="#cancelBoxSelect" text="取消选择范围" />
+      <TabPane layoutX="364.0" layoutY="-3.0" prefHeight="400.0" prefWidth="237.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="输出tif">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="263.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="28.0" layoutY="96.0" mnemonicParsing="false" text="输出tif" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="高程渲染图">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

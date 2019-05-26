@@ -70,6 +70,10 @@ public class BoundarySelectionsController {
     }
 
 
+    /**
+     * 输出 五个点位最优高程值。
+     * @param event
+     */
     @FXML
     public void output(ActionEvent event) {
         logger.debug("output");
@@ -84,12 +88,18 @@ public class BoundarySelectionsController {
         latLonList.add(new LatLon(selector.getSector().getMaxLatitude(), selector.getSector().getMaxLongitude()));
 
 
-        double[] elevations = ElevationUtil.getBestElevations(ElevationAnalyse.wwd, latLonList);
+        double[] elevations = ElevationUtil.getBestElevations(ElevationAnalyse.wwd, latLonList);//
         for(int i=0; i< elevations.length; i++){
             System.out.println(latLonList.get(i));
             System.out.println(elevations[i]);
         }
 
+    }
+
+    @FXML
+    public void cancelBoxSelect(ActionEvent event){
+        System.out.println("取消");
+        selector.disable();
     }
 
 }
