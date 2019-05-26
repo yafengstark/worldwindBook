@@ -2,13 +2,10 @@ package gov.nasa.worldwindx.examples.elevations.boundary;
 
 import gov.nasa.worldwind.WorldWindow;
 import gov.nasa.worldwind.geom.Sector;
-import gov.nasa.worldwind.render.SurfaceImage;
-import gov.nasa.worldwind.render.SurfacePolygon;
 import gov.nasa.worldwind.render.SurfaceShape;
-import gov.nasa.worldwindx.examples.elevations.ElevationAnalyse;
+import gov.nasa.worldwindx.examples.elevations.ElevationImage;
 import gov.nasa.worldwindx.examples.util.SectorSelector;
 import gov.nasa.worldwindx.examples.util.SectorUtil;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -51,7 +48,7 @@ public class BoundarySelectionsView {
         controller.worldWindow = worldWindow;
         controller.stage = stage;
 
-        controller.selector =  new SectorSelector(ElevationAnalyse.wwd);
+        controller.selector =  new SectorSelector(ElevationImage.wwd);
 
         controller.selector.setInteriorColor(new Color(1f, 1f, 1f, 0.1f));
         controller.selector.setBorderColor(new Color(1f, 0f, 0f, 0.5f));

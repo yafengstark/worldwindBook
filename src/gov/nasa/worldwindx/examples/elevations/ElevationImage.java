@@ -1,18 +1,14 @@
 package gov.nasa.worldwindx.examples.elevations;
 
 
-import gov.nasa.worldwind.BasicModel;
 import gov.nasa.worldwind.Model;
 import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.awt.WorldWindowGLJPanel;
 import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.geom.Sector;
-import gov.nasa.worldwind.globes.Earth;
-import gov.nasa.worldwind.globes.ElevationModel;
 import gov.nasa.worldwind.layers.ViewControlsLayer;
 import gov.nasa.worldwind.layers.ViewControlsSelectListener;
-import gov.nasa.worldwind.terrain.BasicElevationModel;
 import gov.nasa.worldwind.util.statusbar.StatusBarView;
 import gov.nasa.worldwindx.examples.elevations.boundary.BoundarySelectionsView;
 import javafx.application.Application;
@@ -25,13 +21,17 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 画框选择范围
  *
  * @author com *
  */
-public class ElevationAnalyse extends Application {
+public class ElevationImage extends Application {
+
+    private static Logger logger= LoggerFactory.getLogger(ElevationImage.class);
 
     public static void main(String[] args) {
 
@@ -66,9 +66,13 @@ public class ElevationAnalyse extends Application {
         Menu elevationMenu = new Menu("地形");
         elevationMenu.getItems().addAll(
                 createOutputElevations()
+//                createExportElevationTif()
         );
 
         Menu imageryMenu = new Menu("影像");
+        imageryMenu.getItems().addAll(
+
+        );
 
         menuBar.getMenus().addAll(
                 imageryMenu,
@@ -124,12 +128,34 @@ public class ElevationAnalyse extends Application {
         myStage.show();
     }
 
+    /**
+     * 输出区域内的高程值
+     * @return
+     */
     private MenuItem createOutputElevations() {
-        MenuItem outputElevation = new MenuItem("画框输出经纬度");
+        MenuItem outputElevation = new MenuItem("输出范围内的...");
         outputElevation.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                new BoundarySelectionsView();
+                new BoundarySelectionsView(wwd);
+            }
+        });
+        return outputElevation;
+    }
+
+    /**
+     * 输出高程tif
+     * @return
+     */
+    private MenuItem createExportElevationTif() {
+        MenuItem outputElevation = new MenuItem("输出高程tif");
+        outputElevation.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                logger.debug("");
+//                new BoundarySelectionsView();
+
+
             }
         });
         return outputElevation;

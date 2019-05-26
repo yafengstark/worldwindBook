@@ -4,6 +4,7 @@ import gov.nasa.worldwind.WorldWindow;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.avlist.AVList;
 import gov.nasa.worldwind.avlist.AVListImpl;
+import gov.nasa.worldwind.data.BufferedImageRaster;
 import gov.nasa.worldwind.data.ByteBufferRaster;
 import gov.nasa.worldwind.formats.tiff.GeotiffWriter;
 import gov.nasa.worldwind.geom.Angle;
@@ -11,20 +12,19 @@ import gov.nasa.worldwind.geom.LatLon;
 import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.globes.ElevationModel;
 import gov.nasa.worldwind.globes.Globe;
-import gov.nasa.worldwindx.examples.elevations.ElevationAnalyse;
+import gov.nasa.worldwind.layers.LayerList;
+import gov.nasa.worldwind.layers.TiledImageLayer;
+import gov.nasa.worldwind.render.DrawContext;
+import gov.nasa.worldwindx.examples.elevations.ElevationImage;
 import gov.nasa.worldwindx.examples.util.ElevationUtil;
 import gov.nasa.worldwindx.examples.util.SectorSelector;
 import gov.nasa.worldwindx.examples.util.jfx.AlertUtil;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -41,6 +41,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
 
 
 /**
@@ -132,7 +133,7 @@ public class BoundarySelectionsController {
         latLonList.add(new LatLon(selector.getSector().getMaxLatitude(), selector.getSector().getMaxLongitude()));
 
 
-        double[] elevations = ElevationUtil.getBestElevations(ElevationAnalyse.wwd, latLonList);//
+        double[] elevations = ElevationUtil.getBestElevations(ElevationImage.wwd, latLonList);//
         for (int i = 0; i < elevations.length; i++) {
             System.out.println(latLonList.get(i));
             System.out.println(elevations[i]);
@@ -176,54 +177,7 @@ public class BoundarySelectionsController {
         Thread t = new Thread(new Runnable() {
             public void run() {
                 Platform.runLater(() -> {
-                    try {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("正在导出");
-                        alert.setHeaderText(null);
-                        alert.setContentText("正在导出");
-                        alert.show();
-
-                        // 最大支持2048
-                        int width = 0;
-                        int height = 0;
-                        try {
-                            width = Integer.parseInt(widthText.getText());
-                            height = Integer.parseInt(heightText.getText());
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            AlertUtil.alertFail("长宽格式不对");
-                            return;
-                        }
-
-
-                        logger.debug("生成的图片大小:", width + ", " + height);
-
-                        alert.setContentText("获取高程值开始");
-                        double[] elevations = readElevations(selector.getSector(), width, height);
-                        alert.setContentText("获取高程值结束，开始生成图片");
-
-
-                        if (null != elevations) {
-//                        jd.setTitle("Writing elevations to " + saveToFile.getName());
-                            writeElevationsToFile(selector.getSector(), width, height, elevations, file);
-
-                            alert.setContentText("存储文件成功\n" + file.getAbsolutePath());
-//                            alert.close();
-                        } else {
-                            AlertUtil.alertFail("存储失败\n" + file.getAbsolutePath());
-//                            alert.close();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        SwingUtilities.invokeLater(new Runnable() {
-                            public void run() {
-//                            worldWindow.(Cursor.getDefaultCursor());
-                                worldWindow.redraw();
-//                            jd.setVisible(false);
-                            }
-                        });
-                    }
+                    saveElevation(file);
                 });
 
 
@@ -233,6 +187,196 @@ public class BoundarySelectionsController {
 //        this.setCursor(new Cursor(Cursor.WAIT_CURSOR)); // 设置鼠标状态
         this.worldWindow.redraw();
         t.start();
+    }
+
+    private void saveElevation(File file) {
+        try {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("正在导出");
+            alert.setHeaderText(null);
+            alert.setContentText("正在导出");
+            alert.show();
+
+            // 最大支持2048
+            int width = 0;
+            int height = 0;
+            try {
+                width = Integer.parseInt(widthText.getText());
+                height = Integer.parseInt(heightText.getText());
+            } catch (Exception e) {
+                e.printStackTrace();
+                AlertUtil.alertFail("长宽格式不对");
+                return;
+            }
+
+
+            logger.debug("生成的图片大小:", width + ", " + height);
+
+            alert.setContentText("获取高程值开始");
+            double[] elevations = readElevations(selector.getSector(), width, height);
+            alert.setContentText("获取高程值结束，开始生成图片");
+
+
+            if (null != elevations) {
+//                        jd.setTitle("Writing elevations to " + saveToFile.getName());
+                writeElevationsToFile(selector.getSector(), width, height, elevations, file);
+
+                alert.setContentText("存储文件成功\n" + file.getAbsolutePath());
+//                            alert.close();
+            } else {
+                AlertUtil.alertFail("存储失败\n" + file.getAbsolutePath());
+//                            alert.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+//                            worldWindow.(Cursor.getDefaultCursor());
+                    worldWindow.redraw();
+//                            jd.setVisible(false);
+                }
+            });
+        }
+    }
+
+    @FXML
+    public void doSaveImage(ActionEvent event) {
+        final FileChooser fileChooser = new FileChooser();
+        configureFileChooser(fileChooser);
+        File file = fileChooser.showSaveDialog(stage);
+        if (file != null) {
+//            openFile(file);
+            logger.debug(file.getAbsolutePath());
+        } else {
+            logger.debug("选择为空");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("选择路径不合法");
+            alert.setContentText("重新选择");
+
+            alert.showAndWait();
+            return;
+        }
+
+        TiledImageLayer currentLayer = null;
+        LayerList list = worldWindow.getModel().getLayers();
+        DrawContext dc = worldWindow.getSceneController().getDrawContext();
+
+        ListIterator iterator = list.listIterator();
+        while (iterator.hasNext()) {
+            Object o = iterator.next();
+            if (o instanceof TiledImageLayer) {
+                TiledImageLayer layer = (TiledImageLayer) o;
+                if (layer.isEnabled() && layer.isLayerActive(dc) && layer.isLayerInView(dc)) {
+                    currentLayer = layer;
+                }
+            }
+        }
+
+        if (null == currentLayer) {
+            return;
+        }
+
+
+        if (file == null)
+            return;
+
+        final TiledImageLayer activeLayer = currentLayer;
+
+
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+
+                Platform.runLater(() ->{
+                    saveElevations(activeLayer, file);
+                });
+
+            }
+        });
+
+
+        worldWindow.redraw();
+        t.start();
+    }
+
+    private void saveElevations(TiledImageLayer activeLayer, File file) {
+        try {
+            System.out.println("输出影像的图层名：" + activeLayer.getName());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("正在导出");
+            alert.setHeaderText(null);
+            alert.setContentText("正在导出的图层" + activeLayer.getName());
+            alert.show();
+
+            // 最大支持2048
+            int width = 0;
+            int height = 0;
+            try {
+                width = Integer.parseInt(widthText.getText());
+                height = Integer.parseInt(heightText.getText());
+            } catch (Exception e) {
+                e.printStackTrace();
+                AlertUtil.alertFail("长宽格式不对");
+                return;
+            }
+
+
+            logger.debug("生成的图片大小:", width + ", " + height);
+
+
+            BufferedImage image = captureImage(activeLayer, selector.getSector(), width, height);//2048
+
+            if (null != image) {
+
+                alert.setContentText("写文件到： " + file.getName());
+                writeImageToFile(selector.getSector(), image, file);
+                alert.setContentText("生成成功： " + file.getName());
+            } else {
+                alert.setContentText("生成失败： " + file.getName());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+
+                    worldWindow.redraw();
+
+                }
+            });
+        }
+    }
+
+    private void writeImageToFile(Sector sector, BufferedImage image, File gtFile)
+            throws IOException {
+        AVList params = new AVListImpl();
+
+        params.setValue(AVKey.SECTOR, sector);
+        params.setValue(AVKey.COORDINATE_SYSTEM, AVKey.COORDINATE_SYSTEM_GEOGRAPHIC);
+        params.setValue(AVKey.PIXEL_FORMAT, AVKey.IMAGE);
+        params.setValue(AVKey.BYTE_ORDER, AVKey.BIG_ENDIAN);
+
+        GeotiffWriter writer = new GeotiffWriter(gtFile);
+        try {
+            writer.write(BufferedImageRaster.wrapAsGeoreferencedRaster(image, params));
+        } finally {
+            writer.close();
+        }
+    }
+
+    private BufferedImage captureImage(TiledImageLayer layer, Sector sector, int width, int height)
+            throws Exception {
+
+
+        String mimeType = layer.getDefaultImageFormat();
+        if (layer.isImageFormatAvailable("image/png"))
+            mimeType = "image/png";
+        else if (layer.isImageFormatAvailable("image/jpg"))
+            mimeType = "image/jpg";
+
+        return layer.composeImageForSector(sector, width, height, 1d, -1, mimeType, true, null, 30000);
     }
 
     /**
