@@ -1,8 +1,15 @@
 package gov.nasa.worldwindx.examples.elevations.boundary;
 
+import gov.nasa.worldwind.WorldWindow;
 import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.render.SurfaceImage;
+import gov.nasa.worldwind.render.SurfacePolygon;
+import gov.nasa.worldwind.render.SurfaceShape;
 import gov.nasa.worldwindx.examples.elevations.ElevationAnalyse;
 import gov.nasa.worldwindx.examples.util.SectorSelector;
+import gov.nasa.worldwindx.examples.util.SectorUtil;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
@@ -23,7 +30,7 @@ public class BoundarySelectionsView {
 
     private static Logger logger = LoggerFactory.getLogger(BoundarySelectionsView.class);
 
-    public BoundarySelectionsView(){
+    public BoundarySelectionsView(WorldWindow worldWindow){
         logger.debug("初始化");
 
         Stage stage = new Stage();
@@ -41,6 +48,8 @@ public class BoundarySelectionsView {
 
         BoundarySelectionsController controller = fxmlLoader.getController();   //获取Controller的实例对象
         //Controller中写的初始化方法
+        controller.worldWindow = worldWindow;
+        controller.stage = stage;
 
         controller.selector =  new SectorSelector(ElevationAnalyse.wwd);
 
@@ -48,6 +57,42 @@ public class BoundarySelectionsView {
         controller.selector.setBorderColor(new Color(1f, 0f, 0f, 0.5f));
         controller.selector.setBorderWidth(3);
 
+        controller.sizeSlider.valueProperty().addListener((
+                ObservableValue<? extends Number> ov,
+                Number old_val, Number new_val) -> {
+
+            controller.desiredSize.setText(String.format("%.2f", new_val));
+
+
+            if(controller.selector.getSector() != null){
+                // 求长宽
+                int[] size = controller.adjustSize(controller.selector.getSector(),
+                        new Double(controller.sizeSlider.getValue()).intValue()); // 调整这个desiredSize, 分辨率会提高
+                int width = size[0], height = size[1];
+                controller.widthText.setText(width+"");
+                controller.heightText.setText(height+"");
+
+
+                // 求分辨率
+                Sector sector = controller.selector.getSector();
+                SurfaceShape surfaceShape = SectorUtil.getBoundary(sector);
+
+                double area = surfaceShape.getArea(worldWindow.getModel().getGlobe(), false);
+                logger.debug("面积是：" +area);
+                logger.debug("总像素数："+ width*height);
+
+                controller.resolutionText.setText(area/(width*height)+"");
+
+
+            }
+
+
+
+
+
+
+
+        });
 
 
 

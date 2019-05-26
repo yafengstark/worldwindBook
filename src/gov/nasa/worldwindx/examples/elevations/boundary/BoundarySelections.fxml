@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.nasa.worldwindx.examples.elevations.boundary.BoundarySelectionsController">
+<AnchorPane onDragDetected="#exportTif" prefHeight="400.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.nasa.worldwindx.examples.elevations.boundary.BoundarySelectionsController">
    <children>
       <Label layoutX="102.0" layoutY="106.0" text="最小经度" />
       <Label layoutX="102.0" layoutY="138.0" text="最大经度" />
@@ -20,13 +21,22 @@
       <Button layoutX="106.0" layoutY="243.0" mnemonicParsing="false" onAction="#choose" text="画框选择" />
       <Button layoutX="106.0" layoutY="294.0" mnemonicParsing="false" onAction="#output" text="输出高程" />
       <Button layoutX="195.0" layoutY="243.0" mnemonicParsing="false" onAction="#cancelBoxSelect" text="取消选择范围" />
-      <TabPane layoutX="364.0" layoutY="-3.0" prefHeight="400.0" prefWidth="237.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="364.0" layoutY="-3.0" prefHeight="400.0" prefWidth="294.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="输出tif">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="263.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="279.0">
                      <children>
-                        <Button layoutX="28.0" layoutY="96.0" mnemonicParsing="false" text="输出tif" />
+                        <Button layoutX="131.0" layoutY="318.0" mnemonicParsing="false" onAction="#doSaveElevations" text="输出tif" />
+                        <Slider fx:id="sizeSlider" layoutX="131.0" layoutY="51.0" max="2048.0" min="512.0" prefHeight="14.0" prefWidth="88.0" value="512.0" />
+                        <Label layoutX="28.0" layoutY="50.0" text="调整图像宽高" />
+                        <Text fx:id="desiredSize" layoutX="235.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Label layoutX="28.0" layoutY="87.0" text="图像宽度" />
+                        <Label layoutX="28.0" layoutY="114.0" text="图像高度" />
+                        <Text fx:id="widthText" layoutX="106.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                        <Text fx:id="heightText" layoutX="106.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                        <Text fx:id="resolutionText" layoutX="107.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                        <Label layoutX="29.0" layoutY="141.0" text="分辨率" />
                      </children>
                   </AnchorPane>
             </content>
