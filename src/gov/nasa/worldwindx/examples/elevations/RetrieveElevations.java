@@ -201,7 +201,7 @@ public class RetrieveElevations extends ApplicationTemplate
 
         public void doActionOnButton3()
         {
-            ArrayList<LatLon> latlons = new ArrayList<LatLon>();
+            ArrayList<LatLon> latlons = new ArrayList<>();
 
             latlons.add(LatLon.fromDegrees(45.50d, -123.3d));
             latlons.add(LatLon.fromDegrees(45.52d, -123.3d));

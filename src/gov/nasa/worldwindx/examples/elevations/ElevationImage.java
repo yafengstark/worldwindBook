@@ -7,6 +7,8 @@ import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.awt.WorldWindowGLJPanel;
 import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.layers.Earth.OSMMapnikLayer;
+import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.layers.ViewControlsLayer;
 import gov.nasa.worldwind.layers.ViewControlsSelectListener;
 import gov.nasa.worldwind.util.statusbar.StatusBarView;
@@ -54,6 +56,7 @@ public class ElevationImage extends Application {
     public void start(Stage myStage) {
         wwd = new WorldWindowGLJPanel();
 
+
         System.out.println("Inside the start() method.");
 
         // Give the stage a title.
@@ -74,9 +77,17 @@ public class ElevationImage extends Application {
 
         );
 
+        Menu systemMenu = new Menu("系统");
+        systemMenu.getItems().addAll(
+                createLayerManage(),
+                createScreenShot()
+        );
+
+
         menuBar.getMenus().addAll(
                 imageryMenu,
-                elevationMenu
+                elevationMenu,
+                systemMenu
         );
 
 
@@ -97,6 +108,10 @@ public class ElevationImage extends Application {
         listener.setPanIncrement(0.5);
         wwd.addSelectListener(listener);
         // -------------
+        Layer layer = new OSMMapnikLayer();
+
+        wwd.getModel().getLayers().add(layer);
+
 
 
         Sector sector = Sector.fromDegrees(20, 30, 110, 120);
@@ -155,9 +170,35 @@ public class ElevationImage extends Application {
                 logger.debug("");
 //                new BoundarySelectionsView();
 
+            }
+        });
+        return outputElevation;
+    }
+
+    /**
+     *
+     * @return
+     */
+    private MenuItem createLayerManage() {
+        MenuItem outputElevation = new MenuItem("图层管理");
+        outputElevation.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                logger.debug("");
+//                new BoundarySelectionsView();
 
             }
         });
+        return outputElevation;
+    }
+
+    /**
+     * javafx
+     * @return
+     */
+    private MenuItem createScreenShot() {
+        MenuItem outputElevation = new MenuItem("截屏");
+        outputElevation.setOnAction(new ScreenShotEventHandler(wwd));
         return outputElevation;
     }
 
