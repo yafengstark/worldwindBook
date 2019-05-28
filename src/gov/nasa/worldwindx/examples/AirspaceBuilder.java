@@ -323,6 +323,7 @@ public class AirspaceBuilder extends ApplicationTemplate
 
     protected static final double DEFAULT_SHAPE_SIZE_METERS = 200000.0; // 200 km
 
+
     protected interface AirspaceFactory
     {
         Airspace createAirspace(WorldWindow wwd, boolean fitShapeToViewport);
@@ -336,6 +337,7 @@ public class AirspaceBuilder extends ApplicationTemplate
         {
         }
 
+        @Override
         public Airspace createAirspace(WorldWindow wwd, boolean fitShapeToViewport)
         {
             Polygon poly = new Polygon();
@@ -348,6 +350,7 @@ public class AirspaceBuilder extends ApplicationTemplate
             return poly;
         }
 
+        @Override
         public AirspaceEditor createEditor(Airspace airspace)
         {
             PolygonEditor editor = new PolygonEditor();
@@ -356,6 +359,12 @@ public class AirspaceBuilder extends ApplicationTemplate
             return editor;
         }
 
+        /**
+         *
+         * @param wwd
+         * @param polygon
+         * @param fitShapeToViewport
+         */
         protected void initializePolygon(WorldWindow wwd, Polygon polygon, boolean fitShapeToViewport)
         {
             // Creates a rectangle in the center of the viewport. Attempts to guess at a reasonable size and height.
@@ -627,6 +636,9 @@ public class AirspaceBuilder extends ApplicationTemplate
                 entryPanel.add(tablePane, BorderLayout.CENTER);
             }
 
+            /**
+             * 选择框
+             */
             JPanel selectionPanel = new JPanel();
             {
                 JButton delselectButton = new JButton("Deselect");
@@ -758,6 +770,7 @@ public class AirspaceBuilder extends ApplicationTemplate
             this.firePropertyChange(SIZE_NEW_SHAPES_TO_VIEWPORT, null, resize);
         }
 
+        @Override
         public void actionPerformed(ActionEvent e)
         {
             if (!this.isEnabled())
@@ -1475,9 +1488,9 @@ public class AirspaceBuilder extends ApplicationTemplate
     protected static class AppFrame extends ApplicationTemplate.AppFrame
     {
         // Airspace layer and editor UI components.
-        protected RenderableLayer airspaceLayer;
-        protected AirspaceBuilderModel builderModel;
-        protected AirspaceBuilderPanel builderView;
+        protected RenderableLayer airspaceLayer; // 显示图层
+        protected AirspaceBuilderModel builderModel; // 表 数据模型
+        protected AirspaceBuilderPanel builderPanel;
         protected AirspaceBuilderController builderController;
 
         public AppFrame()
@@ -1488,11 +1501,11 @@ public class AirspaceBuilder extends ApplicationTemplate
 
             this.builderController = new AirspaceBuilderController(this);
             this.builderModel = new AirspaceBuilderModel();
-            this.builderView = new AirspaceBuilderPanel(this.builderModel, this.builderController);
-            this.getContentPane().add(this.builderView, BorderLayout.SOUTH);
+            this.builderPanel = new AirspaceBuilderPanel(this.builderModel, this.builderController);
+            this.getContentPane().add(this.builderPanel, BorderLayout.SOUTH);
 
             this.builderController.setModel(this.builderModel);
-            this.builderController.setView(this.builderView);
+            this.builderController.setView(this.builderPanel);
             this.builderController.setResizeNewShapesToViewport(true);
 
             makeMenuBar(this, this.builderController);
@@ -1500,7 +1513,7 @@ public class AirspaceBuilder extends ApplicationTemplate
 
         public AirspaceBuilderPanel getAirspaceBuilderPanel()
         {
-            return this.builderView;
+            return this.builderPanel;
         }
 
         public RenderableLayer getAirspaceLayer()
