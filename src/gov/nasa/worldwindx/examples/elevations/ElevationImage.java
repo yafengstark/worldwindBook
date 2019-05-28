@@ -14,6 +14,7 @@ import gov.nasa.worldwind.layers.ViewControlsLayer;
 import gov.nasa.worldwind.layers.ViewControlsSelectListener;
 import gov.nasa.worldwind.util.statusbar.StatusBarView;
 import gov.nasa.worldwindx.examples.elevations.boundary.BoundarySelectionsView;
+import gov.nasa.worldwindx.examples.elevations.menu.MenuBarFactory;
 import gov.nasa.worldwindx.examples.util.ViewUtil;
 import javafx.application.Application;
 import javafx.embed.swing.SwingNode;
@@ -65,38 +66,11 @@ public class ElevationImage extends Application {
         myStage.setTitle("JavaFX Skeleton.");
         BorderPane borderPane = new BorderPane();
 
-        MenuBar menuBar = new MenuBar();
-        borderPane.setTop(menuBar);
 
-        Menu elevationMenu = new Menu("地形");
-        elevationMenu.getItems().addAll(
-                createOutputElevations()
-//                createExportElevationTif()
-        );
+        borderPane.setTop(new MenuBarFactory(wwd).getMenuBar());
 
-        Menu imageryMenu = new Menu("影像");
-        imageryMenu.getItems().addAll(
 
-        );
 
-        Menu systemMenu = new Menu("系统");
-        systemMenu.getItems().addAll(
-                createLayerManage(),
-                createScreenShot(),
-                createScreenShotWithBoundary()
-        );
-
-        Menu toolMenu = new Menu("工具");
-        toolMenu.getItems().addAll(
-                createOutputBoundary()
-        );
-
-        menuBar.getMenus().addAll(
-                imageryMenu,
-                elevationMenu,
-                toolMenu,
-                systemMenu
-        );
 
 
 
@@ -165,24 +139,7 @@ public class ElevationImage extends Application {
         });
         return outputElevation;
     }
-    /**
-     * 输出区域内的高程值
-     * @return
-     */
-    private MenuItem createOutputBoundary() {
-        MenuItem outputElevation = new MenuItem("输出视窗范围");
-        outputElevation.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
 
-                logger.debug("");
-                View view = wwd.getView();
-                ViewUtil.getViewSector(wwd);
-
-            }
-        });
-        return outputElevation;
-    }
 
     /**
      * 输出高程tif
@@ -201,42 +158,7 @@ public class ElevationImage extends Application {
         return outputElevation;
     }
 
-    /**
-     *
-     * @return
-     */
-    private MenuItem createLayerManage() {
-        MenuItem outputElevation = new MenuItem("图层管理");
-        outputElevation.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                logger.debug("");
-//                new BoundarySelectionsView();
 
-            }
-        });
-        return outputElevation;
-    }
-
-    /**
-     * javafx
-     * @return
-     */
-    private MenuItem createScreenShot() {
-        MenuItem outputElevation = new MenuItem("截屏");
-        outputElevation.setOnAction(new ScreenShotEventHandler(wwd));
-        return outputElevation;
-    }
-
-    /**
-     * javafx
-     * @return
-     */
-    private MenuItem createScreenShotWithBoundary() {
-        MenuItem outputElevation = new MenuItem("带经纬度截屏");
-        outputElevation.setOnAction(new ScreenShotWithBoundaryEventHandler(wwd));
-        return outputElevation;
-    }
 
     // Override the stop() method.
     @Override
