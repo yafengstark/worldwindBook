@@ -87,7 +87,7 @@ public class ApplicationTemplate
 
         public AppFrame()
         {
-            this.initialize(true, true, false);
+            this.initialize(true, true, true);
         }
 
         public AppFrame(Dimension size)

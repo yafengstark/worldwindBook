@@ -322,6 +322,9 @@ public class KeepingObjectsInView extends ApplicationTemplate
             Position centerPos = this.wwd.getModel().getGlobe().computePositionFromPoint(lookAtPoints[1]);
             double zoom = lookAtPoints[0].distanceTo3(lookAtPoints[1]);
 
+
+
+
             this.wwd.getView().stopAnimations();
             this.wwd.getView().goTo(centerPos, zoom);
         }

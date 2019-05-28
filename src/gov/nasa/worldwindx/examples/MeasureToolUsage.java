@@ -6,6 +6,8 @@
 package gov.nasa.worldwindx.examples;
 
 import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.layers.Earth.GoogleLayer;
+import gov.nasa.worldwind.layers.Earth.OSMMapnikLayer;
 import gov.nasa.worldwind.layers.TerrainProfileLayer;
 import gov.nasa.worldwind.util.measure.*;
 
@@ -18,6 +20,10 @@ import java.util.ArrayList;
 /**
  * Example usage of MeasureTool to draw a shape on the globe and measure length, area, etc. Click the "New" button, and
  * then click and drag on the globe to define a shape. The panel on the left shows the shape's measurement.
+ *
+ *
+ * 量测工具箱
+ *
  *
  * @author Patrick Murris
  * @version $Id: MeasureToolUsage.java 2117 2014-07-01 20:36:49Z tgaskins $
@@ -37,6 +43,9 @@ public class MeasureToolUsage extends ApplicationTemplate
         public AppFrame()
         {
             super(true, true, false); // no layer or statistics panel
+
+            getWwd().getModel().getLayers().add(new GoogleLayer());
+            getWwd().getModel().getLayers().add(new OSMMapnikLayer());
 
             // Add terrain profile layer
             profile.setEventSource(getWwd());

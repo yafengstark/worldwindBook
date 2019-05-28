@@ -120,7 +120,7 @@ public class SurfaceImageViewer extends ApplicationTemplate
                         try
                         {
                             statusLabel.setText("status: Loading image");
-                            // TODO: proper threading
+                            // TOD: proper threading
                             layer.addImage(imageFile.getAbsolutePath());
 
                             getWwd().redraw();

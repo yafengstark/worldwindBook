@@ -72,6 +72,7 @@ public class AnnotationControls extends ApplicationTemplate
         }
 
         @SuppressWarnings( {"StringEquality"})
+        @Override
         public void selected(SelectEvent e)
         {
             if (e == null)

@@ -259,6 +259,7 @@ public class SectorSelector extends WWObjectImpl
         this.edgeFactor = edgeFactor;
     }
 
+    @Override
     public void stageChanged(RenderingEvent event)
     {
         if (!event.getStage().equals(RenderingEvent.AFTER_BUFFER_SWAP))
@@ -286,6 +287,7 @@ public class SectorSelector extends WWObjectImpl
     // the region, or move the globe if they occur outside the region.
     //
 
+    @Override
     public void mousePressed(MouseEvent mouseEvent)
     {
         if (MouseEvent.BUTTON1_DOWN_MASK != mouseEvent.getModifiersEx())
@@ -316,6 +318,7 @@ public class SectorSelector extends WWObjectImpl
         this.firePropertyChange(SECTOR_PROPERTY, this.previousSector, null);
     }
 
+    @Override
     public void mouseDragged(MouseEvent mouseEvent)
     {
         if (MouseEvent.BUTTON1_DOWN_MASK != mouseEvent.getModifiersEx())

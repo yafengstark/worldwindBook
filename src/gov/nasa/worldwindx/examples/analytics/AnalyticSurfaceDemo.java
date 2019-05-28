@@ -46,6 +46,8 @@ public class AnalyticSurfaceDemo extends ApplicationTemplate
         protected static final double HUE_RED = 0d / 360d;
         protected RenderableLayer analyticSurfaceLayer;
 
+
+
         public AppFrame()
         {
             this.initAnalyticSurfaceLayer();
@@ -58,13 +60,16 @@ public class AnalyticSurfaceDemo extends ApplicationTemplate
             this.analyticSurfaceLayer.setName("Analytic Surfaces");
             insertBeforePlacenames(this.getWwd(), this.analyticSurfaceLayer);
 
+
+
             createRandomAltitudeSurface(HUE_BLUE, HUE_RED, 40, 40, this.analyticSurfaceLayer);
-            createRandomColorSurface(HUE_BLUE, HUE_RED, 40, 40, this.analyticSurfaceLayer);
+//            createRandomColorSurface(HUE_BLUE, HUE_RED, 40, 40, this.analyticSurfaceLayer);
 
             // Load the static precipitation data. Since it comes over the network, load it in a separate thread to
             // avoid blocking the example if the load is slow or fails.
             Thread t = new Thread(new Runnable()
             {
+
                 public void run()
                 {
                     createPrecipitationSurface(HUE_BLUE, HUE_RED, analyticSurfaceLayer);
@@ -97,7 +102,17 @@ public class AnalyticSurfaceDemo extends ApplicationTemplate
     //********************  Random Altitude Surface  ***************//
     //**************************************************************//
 
-    protected static void createRandomAltitudeSurface(double minHue, double maxHue, int width, int height,
+    /**
+     * 对应波浪滚动那个
+     *
+     * @param minHue
+     * @param maxHue
+     * @param width
+     * @param height
+     * @param outLayer
+     */
+    protected static void createRandomAltitudeSurface(double minHue, double maxHue,
+                                                      int width, int height,
         RenderableLayer outLayer)
     {
         double minValue = -200e3;

@@ -23,6 +23,7 @@ import javax.media.opengl.GLAnimatorControl;
  */
 public class AnimatedGlobe extends ApplicationTemplate
 {
+    // 注意接口
     public static class AppFrame extends ApplicationTemplate.AppFrame implements RenderingListener
     {
         protected GLAnimatorControl animator;

@@ -12,6 +12,8 @@ import gov.nasa.worldwind.awt.WorldWindowGLCanvas;
 import gov.nasa.worldwind.awt.WorldWindowGLJPanel;
 import gov.nasa.worldwind.event.RenderingExceptionListener;
 import gov.nasa.worldwind.exception.WWAbsentRequirementException;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.globes.Earth;
 import gov.nasa.worldwind.globes.EarthFlat;
 import gov.nasa.worldwindx.applications.worldwindow.WorldWindow;
@@ -61,6 +63,13 @@ public class JavaFxFirst extends Application {
         Model m = new BasicModel();
         m.setGlobe(new Earth());
         wwd.setModel(m);
+
+        // -------------
+
+        Sector sector = Sector.fromDegrees(20, 30, -110, -100);
+
+
+        wwd.getView().setEyePosition(new Position(sector.getCentroid(), 100_000));
 
         SwingNode swingNode = new SwingNode();
 

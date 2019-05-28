@@ -37,6 +37,7 @@ public class ScreenShotAction extends AbstractAction implements RenderingListene
         this.fileChooser = new JFileChooser();
     }
 
+    @Override
     public void actionPerformed(ActionEvent event)
     {
         Component frame = wwd instanceof Component ? ((Component) wwd).getParent() : null;
@@ -66,9 +67,9 @@ public class ScreenShotAction extends AbstractAction implements RenderingListene
                     continue;
                 }
 
-                if (!outFile.getPath().endsWith(".png"))
+                if (!outFile.getPath().endsWith(".png")) {
                     outFile = new File(outFile.getPath() + ".png");
-
+                }
                 if (outFile.exists())
                 {
                     status = JOptionPane.showConfirmDialog(parentFrame,
@@ -88,11 +89,12 @@ public class ScreenShotAction extends AbstractAction implements RenderingListene
         }
 
         this.wwd.removeRenderingListener(this); // ensure not to add a duplicate
-        this.wwd.addRenderingListener(this);
+        this.wwd.addRenderingListener(this); // 关键在这
 
         return outFile;
     }
 
+    @Override
     public void stageChanged(RenderingEvent event)
     {
         if (event.getStage().equals(RenderingEvent.AFTER_BUFFER_SWAP) && this.snapFile != null)

@@ -9,6 +9,7 @@ package gov.nasa.worldwindx.examples;
 import gov.nasa.worldwind.Configuration;
 import gov.nasa.worldwind.avlist.*;
 import gov.nasa.worldwind.data.*;
+import gov.nasa.worldwind.layers.Earth.OSMMapnikLayer;
 import gov.nasa.worldwindx.examples.util.SectorSelector;
 import gov.nasa.worldwind.formats.tiff.GeotiffWriter;
 import gov.nasa.worldwind.geom.*;
@@ -32,6 +33,16 @@ import java.util.*;
  *
  * 导出影像数据和高程数据。
  *
+ * 高程数据是默认提供的那个，应该是网络发布的高程服务，最大请求宽度是2048。
+ *
+ * 输出影像时只会输出当前最上面的影像图层。可通过图层控制中勾选查看。
+ *
+ *
+ * 注意：对于影像来说
+ * 1、只能用TiledImageLayer.
+ * 2、实时从后端取。
+ *
+ *
  * @author Lado Garakanidze
  * @version $Id: ExportImageOrElevations.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
@@ -50,6 +61,7 @@ public class ExportImageOrElevations extends ApplicationTemplate
         public AppFrame()
         {
             super(true, true, false);
+            getWwd().getModel().getLayers().add(new OSMMapnikLayer());
 
             this.selector = new SectorSelector(getWwd());
             this.selector.setInteriorColor(new Color(1f, 1f, 1f, 0.1f));
@@ -224,7 +236,9 @@ public class ExportImageOrElevations extends ApplicationTemplate
 
                         //
 
-                        int[] size = adjustSize(selectedSector, 5120); // 调整这个desiredSize
+                        // 最大支持2048
+
+                        int[] size = adjustSize(selectedSector, 512); // 调整这个desiredSize, 分辨率会提高
                         int width = size[0], height = size[1];
 
                         double[] elevations = readElevations(selectedSector, width, height);
@@ -304,8 +318,23 @@ public class ExportImageOrElevations extends ApplicationTemplate
                 }
             }
 
-            if (null == currentLayer)
+
+
+            while (iterator.hasNext())
+            {
+                Object o = iterator.next();
+                if (o instanceof TiledImageLayer)
+                {
+                    TiledImageLayer layer = (TiledImageLayer) o;
+                    if (layer.getName().contains("OpenStreetMap"))
+                    {
+                       currentLayer = layer;
+                    }
+                }
+            }
+            if (null == currentLayer){
                 return;
+            }
 
             final File saveToFile = this.selectDestinationFile("Select a destination GeoTiff file to save the image",
                 "image");
@@ -322,13 +351,17 @@ public class ExportImageOrElevations extends ApplicationTemplate
             jd.setModal(false);
             jd.setVisible(true);
 
+            System.out.println("输出影像的图层名："+activeLayer.getName());
+//            activeLayer = new OSMMapnikLayer();
+
+
             Thread t = new Thread(new Runnable()
             {
                 public void run()
                 {
                     try
                     {
-                        BufferedImage image = captureImage(activeLayer, selectedSector, 2048);
+                        BufferedImage image = captureImage(activeLayer, selectedSector, 512);//2048
 
                         if (null != image)
                         {
@@ -427,6 +460,8 @@ public class ExportImageOrElevations extends ApplicationTemplate
 
         /**
          * 影像宽高
+         *
+         *
          *
          * @param sector
          * @param width 图像宽度

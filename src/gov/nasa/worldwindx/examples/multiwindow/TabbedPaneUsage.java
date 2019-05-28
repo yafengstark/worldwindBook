@@ -29,7 +29,7 @@ import java.awt.*;
  * have an operational dependency on the WorldWindow they're associated with. An example is the {@link
  * gov.nasa.worldwind.layers.ViewControlsLayer} layer for on-screen navigation. Because this layer responds to input events within a specific
  * WorldWindow, it is not sharable. Refer to the WorldWind Overview page for a list of layers that cannot be shared.
- * // TODO: include the reference to overview.html.
+ * // TOD: include the reference to overview.html.
  *
  * @version $Id: TabbedPaneUsage.java 1853 2014-02-28 19:28:23Z tgaskins $
  */

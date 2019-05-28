@@ -173,7 +173,7 @@ public class InstalledDataPanel extends JPanel
         if (layer == null)
             return;
 
-        layer.setEnabled(true); // TODO: BasicLayerFactory creates layer which is intially disabled
+        layer.setEnabled(true); // TOD: BasicLayerFactory creates layer which is intially disabled
 
         if (!this.worldWindow.getModel().getLayers().contains(layer))
             ApplicationTemplate.insertBeforePlacenames(this.worldWindow, layer);

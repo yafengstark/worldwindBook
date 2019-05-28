@@ -18,13 +18,22 @@ import java.util.*;
  */
 public class ShapeUtils
 {
-    // 根据视场获取高度
+    /**
+     *  根据视场获取高度
+     * @param wwd
+     * @return
+     */
     public static double getViewportScaleFactor(WorldWindow wwd)
     {
         return ((OrbitView) wwd.getView()).getZoom() / 8.0;
     }
 
-    // 获取视角中心位置
+
+    /**
+     * 获取视角中心位置
+     * @param wwd
+     * @return
+     */
     public static Position getNewShapePosition(WorldWindow wwd)
     {
         Line ray = new Line(wwd.getView().getEyePoint(), wwd.getView().getForwardVector());
@@ -43,6 +52,12 @@ public class ShapeUtils
         return Position.ZERO;
     }
 
+    /**
+     *
+     * @param wwd
+     * @param matchViewHeading
+     * @return
+     */
     public static Angle getNewShapeHeading(WorldWindow wwd, boolean matchViewHeading)
     {
         if (matchViewHeading)
