@@ -2,6 +2,7 @@ package gov.nasa.worldwindx.examples.elevations;
 
 
 import gov.nasa.worldwind.Model;
+import gov.nasa.worldwind.View;
 import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.awt.WorldWindowGLJPanel;
@@ -13,6 +14,7 @@ import gov.nasa.worldwind.layers.ViewControlsLayer;
 import gov.nasa.worldwind.layers.ViewControlsSelectListener;
 import gov.nasa.worldwind.util.statusbar.StatusBarView;
 import gov.nasa.worldwindx.examples.elevations.boundary.BoundarySelectionsView;
+import gov.nasa.worldwindx.examples.util.ViewUtil;
 import javafx.application.Application;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
@@ -80,13 +82,19 @@ public class ElevationImage extends Application {
         Menu systemMenu = new Menu("系统");
         systemMenu.getItems().addAll(
                 createLayerManage(),
-                createScreenShot()
+                createScreenShot(),
+                createScreenShotWithBoundary()
         );
 
+        Menu toolMenu = new Menu("工具");
+        toolMenu.getItems().addAll(
+                createOutputBoundary()
+        );
 
         menuBar.getMenus().addAll(
                 imageryMenu,
                 elevationMenu,
+                toolMenu,
                 systemMenu
         );
 
@@ -157,6 +165,24 @@ public class ElevationImage extends Application {
         });
         return outputElevation;
     }
+    /**
+     * 输出区域内的高程值
+     * @return
+     */
+    private MenuItem createOutputBoundary() {
+        MenuItem outputElevation = new MenuItem("输出视窗范围");
+        outputElevation.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                logger.debug("");
+                View view = wwd.getView();
+                ViewUtil.getViewSector(wwd);
+
+            }
+        });
+        return outputElevation;
+    }
 
     /**
      * 输出高程tif
@@ -199,6 +225,16 @@ public class ElevationImage extends Application {
     private MenuItem createScreenShot() {
         MenuItem outputElevation = new MenuItem("截屏");
         outputElevation.setOnAction(new ScreenShotEventHandler(wwd));
+        return outputElevation;
+    }
+
+    /**
+     * javafx
+     * @return
+     */
+    private MenuItem createScreenShotWithBoundary() {
+        MenuItem outputElevation = new MenuItem("带经纬度截屏");
+        outputElevation.setOnAction(new ScreenShotWithBoundaryEventHandler(wwd));
         return outputElevation;
     }
 

@@ -4,7 +4,6 @@ import gov.nasa.worldwind.WorldWindow;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.avlist.AVList;
 import gov.nasa.worldwind.avlist.AVListImpl;
-import gov.nasa.worldwind.data.BufferedImageRaster;
 import gov.nasa.worldwind.data.ByteBufferRaster;
 import gov.nasa.worldwind.formats.tiff.GeotiffWriter;
 import gov.nasa.worldwind.geom.Angle;
@@ -16,6 +15,7 @@ import gov.nasa.worldwind.layers.LayerList;
 import gov.nasa.worldwind.layers.TiledImageLayer;
 import gov.nasa.worldwind.render.DrawContext;
 import gov.nasa.worldwindx.examples.elevations.ElevationImage;
+import gov.nasa.worldwindx.examples.util.TifUtil;
 import gov.nasa.worldwindx.examples.util.ElevationUtil;
 import gov.nasa.worldwindx.examples.util.SectorSelector;
 import gov.nasa.worldwindx.examples.util.jfx.AlertUtil;
@@ -325,12 +325,12 @@ public class BoundarySelectionsController {
             logger.debug("生成的图片大小:", width + ", " + height);
 
 
-            BufferedImage image = captureImage(activeLayer, selector.getSector(), width, height);//2048
+            BufferedImage bufferedImage = captureImage(activeLayer, selector.getSector(), width, height);//2048
 
-            if (null != image) {
+            if (null != bufferedImage) {
 
                 alert.setContentText("写文件到： " + file.getName());
-                writeImageToFile(selector.getSector(), image, file);
+                TifUtil.writeImageToFile(selector.getSector(), bufferedImage, file);
                 alert.setContentText("生成成功： " + file.getName());
             } else {
                 alert.setContentText("生成失败： " + file.getName());
@@ -349,26 +349,10 @@ public class BoundarySelectionsController {
         }
     }
 
-    private void writeImageToFile(Sector sector, BufferedImage image, File gtFile)
-            throws IOException {
-        AVList params = new AVListImpl();
 
-        params.setValue(AVKey.SECTOR, sector);
-        params.setValue(AVKey.COORDINATE_SYSTEM, AVKey.COORDINATE_SYSTEM_GEOGRAPHIC);
-        params.setValue(AVKey.PIXEL_FORMAT, AVKey.IMAGE);
-        params.setValue(AVKey.BYTE_ORDER, AVKey.BIG_ENDIAN);
-
-        GeotiffWriter writer = new GeotiffWriter(gtFile);
-        try {
-            writer.write(BufferedImageRaster.wrapAsGeoreferencedRaster(image, params));
-        } finally {
-            writer.close();
-        }
-    }
 
     private BufferedImage captureImage(TiledImageLayer layer, Sector sector, int width, int height)
             throws Exception {
-
 
         String mimeType = layer.getDefaultImageFormat();
         if (layer.isImageFormatAvailable("image/png"))
