@@ -54,7 +54,7 @@ public class OSMMapnikLayer extends BasicMercatorTiledImageLayer
             URL url= new URL(tile.getLevel().getService()
                     + (tile.getLevelNumber() + 3) + "/" + tile.getColumn() + "/"
                     + ((1 << (tile.getLevelNumber()) + 3) - 1 - tile.getRow()) + ".png");
-            logger.debug(url.toString());
+//            logger.debug(url.toString());
             return url;
         }
     }
