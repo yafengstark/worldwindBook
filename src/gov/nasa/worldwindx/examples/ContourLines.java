@@ -21,6 +21,12 @@ import java.util.*;
  * Illustrates how to display contour lines in WorldWind on the surface terrain at a specified elevation. This uses the
  * class <code>{@link ContourLine}</code> to compute and display the contour lines.
  *
+ * 等高线
+ *
+ * 区域内的等高线
+ *
+ *
+ *
  * @author Patrick Murris
  * @version $Id: ContourLines.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
@@ -41,7 +47,7 @@ public class ContourLines extends ApplicationTemplate
             insertBeforePlacenames(getWwd(), layer);
 
             // Add a global moving contour line to the layer.
-            this.contourLine = new ContourLine();
+            this.contourLine = new ContourLine(); // 等高线
             this.contourLine.setElevation(2125);
             layer.addRenderable(this.contourLine);
 
@@ -54,8 +60,8 @@ public class ContourLines extends ApplicationTemplate
 
             for (int elevation = 0; elevation <= 3000; elevation += 250)
             {
-                ContourLinePolygon cl = new ContourLinePolygon(elevation, positions);
-                cl.setColor(new Color(0.2f, 0.2f, 0.8f));
+                ContourLinePolygon cl = new ContourLinePolygon(elevation, positions); // 区域内的等高线
+                cl.setColor(new Color(0.8f, 0.2f, 0.2f));
 
                 if (elevation % 1000 == 0)
                 {
