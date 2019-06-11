@@ -123,7 +123,7 @@ ContourBuilderExample
 
 ContourLines
 ![](../src/gov/nasa/worldwindx/examples/ContourLines.JPG)
-
+![](../src/gov/nasa/worldwindx/examples/ContourLines2.JPG)
 DimGlobeSurface
 ![](../src/gov/nasa/worldwindx/examples/DimGlobeSurface.JPG)
 
