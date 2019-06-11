@@ -20,6 +20,9 @@ import java.util.*;
 
 /**
  * Shows how to determine and display the intersection of a line with an {@link Polygon}.
+ *
+ * 十字路口
+ *
  * @author tag
  * @version $Id: PolygonIntersection.java 2109 2014-06-30 16:52:38Z tgaskins $
  */
