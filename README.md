@@ -21,6 +21,6 @@
 
 ## 样例集合
 
-[样例图片集合](./src/gov/nasa/worldwindx/examples/0.example.md)
+[样例图片集合](blog/worldwind%20官方样例.md)
 
 
