@@ -147,6 +147,7 @@ public class StatusBar extends JPanel implements PositionListener, RenderingList
 
         if (newEventSource != null)
         {
+            // 注意这个，关键点
             newEventSource.addPositionListener(this);
             newEventSource.addRenderingListener(this);
         }
@@ -179,6 +180,7 @@ public class StatusBar extends JPanel implements PositionListener, RenderingList
         }
     }
 
+    @Override
     public void moved(PositionEvent event)
     {
         this.handleCursorPositionChange(event);
@@ -284,6 +286,7 @@ public class StatusBar extends JPanel implements PositionListener, RenderingList
         }
     }
 
+    @Override
     public void stageChanged(RenderingEvent event)
     {
         if (!event.getStage().equals(RenderingEvent.BEFORE_BUFFER_SWAP))

@@ -10,7 +10,7 @@ import gov.nasa.worldwind.View;
 /**
  * Represents a volume enclosing one or more objects or collections of points. Primarily used to test intersections with
  * other objects.
- *
+ * 体积，溶剂
  * @author Tom Gaskins
  * @version $Id: Extent.java 1171 2013-02-11 21:45:02Z dcollins $
  */
@@ -34,6 +34,8 @@ public interface Extent
     /**
      * Returns the extent's radius. The computation of the radius depends on the implementing class. See the
      * documentation for the individual classes to determine how they compute a radius.
+     *
+     * 半径
      *
      * @return the extent's radius.
      */

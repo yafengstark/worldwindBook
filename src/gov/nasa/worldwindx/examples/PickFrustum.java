@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * This example illustrates how to change the size of the pick frustum, and how a smaller pick frustum can give better
  * performance.
- *
+ * Frustum：截头体
  * @author Jeff Addison
  * @version $Id: PickFrustum.java 1171 2013-02-11 21:45:02Z dcollins $
  */

@@ -15,6 +15,8 @@ import java.awt.*;
 import java.util.Arrays;
 
 /**
+ * 统计信息面板
+ *
  * @version $Id: StatisticsPanel.java 1171 2013-02-11 21:45:02Z dcollins $
  */
 public class StatisticsPanel extends JPanel

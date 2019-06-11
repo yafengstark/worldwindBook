@@ -355,6 +355,13 @@ public class LatLon
      * the radius of the globe.
      * This method uses a spherical model, not elliptical.
      *
+     * 计算两个位置之间的大圆角距离。返回值给出的距离为
+
+     圆周率半径圆上两个位置之间的角度。在弧度中，这个角度也是
+     在圆上的两个位置之间分段。要从该值计算以米为单位的距离，请将其乘以
+     地球的半径。
+
+     这种方法使用的是球形模型，而不是椭圆模型。
      * @param p1 LatLon of the first location
      * @param p2 LatLon of the second location
      *

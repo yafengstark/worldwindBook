@@ -16,6 +16,7 @@ import java.awt.*;
  * of other layers. As the view zooms in, the graticule adjusts to display a finer grid. The example provides controls
  * to customize the color and opacity of the grid.
  *
+ * Graticule： 网格
  * @author Patrick Murris
  * @version $Id: MGRSGraticule.java 2109 2014-06-30 16:52:38Z tgaskins $
  */

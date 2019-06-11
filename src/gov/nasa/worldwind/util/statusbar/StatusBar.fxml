@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="33.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.nasa.worldwind.util.statusbar.StatusBarContorller">
+<AnchorPane prefHeight="33.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gov.nasa.worldwind.util.statusbar.StatusBarController">
    <children>
       <Label layoutX="14.0" layoutY="12.0" text="视点高度" />
       <Label layoutX="181.0" layoutY="9.0" text="纬度" />

@@ -22,6 +22,11 @@ public interface Model extends WWObject
     /**
      * Returns the bounding sphere in Cartesian world coordinates of the model.
      *
+     *
+
+     Returns the bounding sphere in Cartesian world coordinates of the model.
+     返回模型的笛卡尔世界坐标中的边界球。
+
      * @return the model's bounding sphere in Cartesian coordinates, or null if the extent cannot be determined.
      */
     gov.nasa.worldwind.geom.Extent getExtent();

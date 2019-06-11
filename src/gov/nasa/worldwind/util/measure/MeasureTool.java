@@ -63,6 +63,8 @@ import java.util.List;
  * be used simultaneously. However, each instance should be disposed of after usage by calling the {@link #dispose()}
  * method.</p>
  *
+ * 量测工具箱
+ *
  * @author Patrick Murris
  * @version $Id: MeasureTool.java 3297 2015-07-03 16:21:05Z dcollins $
  * @see MeasureToolController
@@ -1842,6 +1844,9 @@ public class MeasureTool extends AVListImpl implements Disposable
         cp.setLeaderLocations(leaderBegin, controlLocation);
     }
 
+    /**
+     *
+     */
     protected void updateMeasureShape()
     {
         // Update line

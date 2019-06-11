@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
  * @author tony
  * @date 2019/5/24 20:52
  */
-public class StatusBarContorller {
+public class StatusBarController {
 
     @FXML
     Text altText;

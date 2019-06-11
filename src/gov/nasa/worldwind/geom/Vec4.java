@@ -8,6 +8,9 @@ package gov.nasa.worldwind.geom;
 import gov.nasa.worldwind.util.*;
 
 /**
+ *
+ * 向量
+ * 4维的原因是需要第四维确定法向量，一般为1
  * @author dcollins
  * @version $Id: Vec4.java 1171 2013-02-11 21:45:02Z dcollins $
  */

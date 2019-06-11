@@ -1304,6 +1304,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
             throw new IllegalArgumentException(msg);
         }
 
+        //
         Level targetLevel = this.getTargetLevel(sector, targetResolution);
         if (targetLevel == null)
             return Double.MAX_VALUE;

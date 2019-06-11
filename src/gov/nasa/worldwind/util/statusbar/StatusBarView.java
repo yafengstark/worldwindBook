@@ -6,11 +6,11 @@ import gov.nasa.worldwind.event.PositionListener;
 import gov.nasa.worldwind.event.RenderingEvent;
 import gov.nasa.worldwind.event.RenderingListener;
 import gov.nasa.worldwind.geom.Position;
-import gov.nasa.worldwind.util.Logging;
-import gov.nasa.worldwind.util.WWMath;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.layout.Pane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.io.IOException;
@@ -23,11 +23,13 @@ import java.text.DecimalFormat;
  */
 public class StatusBarView  implements PositionListener, RenderingListener {
 
+    private static Logger logger = LoggerFactory.getLogger(StatusBarView.class);
+
     DecimalFormat df   = new DecimalFormat("######0.00");
 
     private Pane pane;
     private WorldWindow worldWindow;
-    private StatusBarContorller statusBarContorller;
+    private StatusBarController statusBarController;
 
     public StatusBarView(WorldWindow worldWindow){
         this.worldWindow = worldWindow;
@@ -39,9 +41,10 @@ public class StatusBarView  implements PositionListener, RenderingListener {
         try {
             pane = fxmlLoader.load();
         } catch (IOException e) {
+
             e.printStackTrace();
         }
-        statusBarContorller = fxmlLoader.getController();
+        statusBarController = fxmlLoader.getController();
 
         worldWindow.addPositionListener(this);
         worldWindow.addRenderingListener(this);
@@ -64,16 +67,16 @@ public class StatusBarView  implements PositionListener, RenderingListener {
         Position newPos = event.getPosition();
         if (newPos != null)
         {
-            statusBarContorller.latText.setText(df.format(newPos.getLatitude().degrees)+"");
-            statusBarContorller.lonText.setText(df.format(newPos.getLongitude().degrees)+"");
-            statusBarContorller.eleText.setText(df.format(worldWindow.getModel().getGlobe().getElevation(
+            statusBarController.latText.setText(df.format(newPos.getLatitude().degrees)+"");
+            statusBarController.lonText.setText(df.format(newPos.getLongitude().degrees)+"");
+            statusBarController.eleText.setText(df.format(worldWindow.getModel().getGlobe().getElevation(
                     newPos.getLatitude(), newPos.getLongitude()))+"");
         }
         else
         {
-            statusBarContorller.latText.setText("未选中");
-            statusBarContorller.lonText.setText("未选中");
-            statusBarContorller.eleText.setText("未选中");
+            statusBarController.latText.setText("未选中");
+            statusBarController.lonText.setText("未选中");
+            statusBarController.eleText.setText("未选中");
         }
     }
 
@@ -89,7 +92,7 @@ public class StatusBarView  implements PositionListener, RenderingListener {
             {
                 if (worldWindow.getView() != null && worldWindow.getView().getEyePosition() != null) {
 
-                    statusBarContorller.altText.setText(df.format(
+                    statusBarController.altText.setText(df.format(
                             worldWindow.getView().getEyePosition().getElevation()) + "");
                 }
 
